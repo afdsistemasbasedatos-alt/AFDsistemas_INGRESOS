@@ -2287,6 +2287,7 @@
           fetch(cfg.endpoint, {
             method: "POST",
             headers: buildCloudHeaders(cfg),
+            redirect: "follow",
             body: JSON.stringify({ mode: "chat", orderKey: key, message: msg, messages: chatByOrder[key] })
           }).catch(() => {});
         }
@@ -2295,6 +2296,31 @@
 
       let isSyncInFlight = false;
       let hasPendingLocalPush = false;
+      let lastLocalSaveTs = 0;
+      let deletedRecordIds = new Set();
+
+      function mergeRecordsSafely(localList, remoteList) {
+        const map = new Map();
+        for (const r of remoteList) {
+          const key = String(r.id);
+          if (!deletedRecordIds.has(key)) {
+            map.set(key, r);
+          }
+        }
+        for (const l of localList) {
+          const key = String(l.id);
+          if (deletedRecordIds.has(key)) continue;
+          const remote = map.get(key);
+          if (!remote) {
+            if (hasPendingLocalPush || (Date.now() - (l.updatedAt || 0) < 120000)) {
+              map.set(key, l);
+            }
+          } else if ((l.updatedAt || 0) > (remote.updatedAt || 0)) {
+            map.set(key, l);
+          }
+        }
+        return Array.from(map.values());
+      }
 
       async function pullFromCloud(silent = true) {
         const cfg = loadCloudConfig();
@@ -2302,7 +2328,9 @@
           setCloudUiState("off");
           return false;
         }
-        if (isSyncInFlight || hasPendingLocalPush) return false;
+        if (isSyncInFlight || hasPendingLocalPush || (Date.now() - lastLocalSaveTs < 10000)) {
+          return false;
+        }
         isSyncInFlight = true;
         try {
           setCloudUiState("syncing");
@@ -2314,7 +2342,7 @@
             : cfg.endpoint;
 
           const fetchOpts = isGoogleAppsScriptUrl(cfg.endpoint)
-            ? { method: "GET", cache: "no-store" }
+            ? { method: "GET", cache: "no-store", redirect: "follow" }
             : { method: "GET", headers: buildCloudHeaders(cfg), cache: "no-store" };
 
           const res = await fetch(url, fetchOpts);
@@ -2331,17 +2359,19 @@
                 : [];
 
           const incoming = normalizeOrderList(rawList);
+          const merged = mergeRecordsSafely(records, incoming);
+
           const currentSerialized = JSON.stringify(records);
-          const incomingSerialized = JSON.stringify(incoming);
+          const mergedSerialized = JSON.stringify(merged);
 
           let chatChanged = false;
           if (data && typeof data === "object" && data.chats) {
             chatChanged = mergeChatMessages(data.chats);
           }
 
-          if (currentSerialized !== incomingSerialized) {
-            records = incoming;
-            localStorage.setItem(STORAGE_KEY, incomingSerialized);
+          if (currentSerialized !== mergedSerialized) {
+            records = merged;
+            localStorage.setItem(STORAGE_KEY, mergedSerialized);
             render();
           } else if (chatChanged && typeof renderTechChat === "function") {
             renderTechChat();
@@ -2370,6 +2400,7 @@
           return false;
         }
         hasPendingLocalPush = true;
+        lastLocalSaveTs = Date.now();
         while (isSyncInFlight) {
           await new Promise((r) => setTimeout(r, 120));
         }
@@ -2382,23 +2413,28 @@
           const res = await fetch(cfg.endpoint, {
             method: isGas ? "POST" : "PUT",
             headers: buildCloudHeaders(cfg),
+            redirect: "follow",
             body: JSON.stringify(isGas ? { mode: "replace", records, chats: chatByOrder } : records)
           });
           if (!res.ok) throw new Error("HTTP " + res.status);
-          const data = await res.json().catch(() => ({}));
+          const textRes = await res.text();
+          let data = {};
+          try { data = JSON.parse(textRes); } catch (_) {}
           if (data && data.ok === false) throw new Error(data.error || "Error al guardar en Drive");
 
           hasPendingLocalPush = false;
+          deletedRecordIds.clear();
           const nowTime = new Date().toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" });
           setCloudUiState("online", `☁ Drive · ${nowTime}`);
           if (elements.saveStatus) elements.saveStatus.textContent = `Guardado en Drive (${nowTime})`;
           if (!silent) showToast("Órdenes guardadas en Google Drive (afdsistemas.base.datos@gmail.com).");
           return true;
         } catch (err) {
-          console.warn("Error al subir a Drive/nube:", err);
-          setCloudUiState("error");
-          if (elements.saveStatus) elements.saveStatus.textContent = "Guardado local (reintentando Drive...)";
-          if (!silent) showToast("Guardado local; no se pudo subir a Drive.");
+          console.error("Error al subir a Drive/nube:", err);
+          hasPendingLocalPush = false;
+          setCloudUiState("error", "☁ Error al subir");
+          if (elements.saveStatus) elements.saveStatus.textContent = "Error al guardar en Drive (guardado local)";
+          showToast("⚠ No se pudo guardar en Google Drive. Revisa consola (F12) o permisos del Script.");
           return false;
         } finally {
           isSyncInFlight = false;
@@ -3434,6 +3470,7 @@
         if (btn.dataset.action === "edit") openEditRecord(rec);
         if (btn.dataset.action === "delete") {
           if (!confirm(`¿Eliminar el registro ${rec.orderNumber || rec.id} de ${rec.client}?`)) return;
+          deletedRecordIds.add(String(rec.id));
           records = records.filter((x) => x.id !== rec.id);
           saveRecords();
           render();
@@ -3503,6 +3540,8 @@
           observations: $("formObservations").value.trim(),
           updatedAt: Date.now()
         };
+
+        deletedRecordIds.delete(String(record.id));
 
         if (existingId) {
           const idx = records.findIndex((x) => x.id === existingId);
