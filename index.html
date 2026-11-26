@@ -1068,7 +1068,7 @@
       font-size: 12px;
     }
 
-    /* ESTILO MESSENGER / TELEGRAM PARA CHAT CON CLIENTES (IMAGEN 1) */
+    /* ESTILO MESSENGER / TELEGRAM PARA CHAT CON CLIENTES */
     .tg-chat-shell {
       display: grid;
       grid-template-columns: 310px minmax(0, 1fr);
@@ -2114,9 +2114,8 @@
       const CLOUD_CONFIG_KEY = "afd_bt_cloud_config_v1";
       const CHAT_STORAGE_KEY = "afd_bt_chat_mensajes_v1";
 
-      // PEGA AQUÍ TU URL /exec DE GOOGLE APPS SCRIPT (afdsistemas.base.datos@gmail.com)
-      // PARA QUE CUALQUIER DISPOSITIVO NUEVO SE CONECTE AUTOMÁTICAMENTE SIN CONFIGURAR NADA:
-      const DEFAULT_CLOUD_ENDPOINT = "https://script.google.com/macros/s/AKfycbw5Rptw3KPthZN0fMxsj990l8BgyU1Uyi149sGWP_JLINXAHLFrXhsizd_wbpMpyhpB/exec";
+      // URL ACTUALIZADA DE GOOGLE APPS SCRIPT (afdsistemas.base.datos@gmail.com)
+      const DEFAULT_CLOUD_ENDPOINT = "https://script.google.com/macros/s/AKfycbxp50D4lsuLkOzasQhe3exgB5_NSIbNWf4I94So2LLlXecA0-t0oDG0zha4XyyrlvI/exec";
 
       const STATUSES = ["Pendiente", "En proceso", "Completado"];
 
@@ -2128,8 +2127,14 @@
           }
           const cfg = JSON.parse(raw);
           const savedEndpoint = String(cfg.endpoint || "").trim();
+          // Si el navegador tenía guardada la URL vieja que fallaba, actualizarla automáticamente a la nueva
+          const isOldBrokenUrl = savedEndpoint.includes("AKfycbw5Rptw3KPthZN0fMxsj990l8BgyU1Uyi149sGWP_JLINXAHLFrXhsizd_wbpMpyhpB");
+          const effectiveEndpoint = (!savedEndpoint || isOldBrokenUrl) ? DEFAULT_CLOUD_ENDPOINT.trim() : savedEndpoint;
+          if (isOldBrokenUrl) {
+            saveCloudConfig({ endpoint: effectiveEndpoint, apiKey: String(cfg.apiKey || "").trim(), autoSync: true });
+          }
           return {
-            endpoint: savedEndpoint || DEFAULT_CLOUD_ENDPOINT.trim(),
+            endpoint: effectiveEndpoint,
             apiKey: String(cfg.apiKey || "").trim(),
             autoSync: true
           };
