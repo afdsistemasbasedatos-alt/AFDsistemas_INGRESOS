@@ -987,6 +987,448 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
     }
 
+    /* ESTILOS DEL CHAT ENTRE CLIENTE Y TÉCNICO */
+    .chat-box {
+      margin-top: 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-3);
+      font-size: 12px;
+      font-weight: 850;
+      color: var(--ink-strong);
+    }
+    .chat-messages {
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--surface-1);
+    }
+    .chat-empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 11.5px;
+      padding: 14px 8px;
+    }
+    .chat-msg {
+      max-width: 84%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .chat-msg.client {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--afd-blue-deep), var(--afd-blue));
+      color: #FFFFFF;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-msg.tech {
+      align-self: flex-start;
+      background: var(--surface-3);
+      border: 1px solid var(--line-strong);
+      color: var(--ink-strong);
+      border-bottom-left-radius: 4px;
+    }
+    .chat-meta {
+      display: block;
+      margin-top: 3px;
+      font-size: 10px;
+      opacity: 0.82;
+      font-family: var(--font-mono);
+    }
+    .chat-form {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      background: var(--surface-3);
+    }
+    .chat-input {
+      flex: 1;
+      height: 36px;
+      padding: 6px 11px;
+      border-radius: 9px;
+      border: 1px solid var(--line-strong);
+      background: var(--input-bg);
+      color: var(--ink-strong);
+      font-size: 12px;
+    }
+
+    /* ESTILO MESSENGER / TELEGRAM PARA CHAT CON CLIENTES (IMAGEN 1) */
+    .tg-chat-shell {
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+      min-height: 440px;
+      max-height: 540px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      background: #FFFFFF;
+      box-shadow: 0 12px 30px rgba(11, 25, 32, 0.12);
+    }
+    [data-theme="dark"] .tg-chat-shell {
+      background: #0D202B;
+    }
+    .tg-sidebar {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--line);
+      background: var(--surface-2);
+      min-height: 0;
+    }
+    .tg-sidebar-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-3);
+    }
+    .tg-menu-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 800;
+      user-select: none;
+    }
+    .tg-search-input {
+      flex: 1;
+      min-width: 0;
+      height: 32px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--input-bg);
+      color: var(--ink-strong);
+      font-size: 12px;
+    }
+    .tg-search-input:focus {
+      outline: none;
+      border-color: #36A9E1;
+    }
+    .tg-conv-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+    .tg-conv-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+    .tg-conv-item:hover {
+      background: var(--surface-hover);
+    }
+    .tg-conv-item.active {
+      background: #46A3E5;
+      color: #FFFFFF;
+    }
+    .tg-avatar {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-brand);
+      font-size: 12.5px;
+      font-weight: 850;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+    }
+    .tg-conv-item.active .tg-avatar {
+      background: rgba(255, 255, 255, 0.24) !important;
+      color: #FFFFFF;
+    }
+    .tg-conv-main {
+      flex: 1;
+      min-width: 0;
+    }
+    .tg-conv-row1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .tg-conv-name {
+      font-weight: 800;
+      font-size: 12.5px;
+      color: var(--ink-strong);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .tg-conv-item.active .tg-conv-name {
+      color: #FFFFFF;
+    }
+    .tg-conv-time {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .tg-conv-item.active .tg-conv-time {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .tg-conv-row2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .tg-conv-preview {
+      font-size: 11px;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .tg-conv-item.active .tg-conv-preview {
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .tg-unread-badge {
+      flex: 0 0 auto;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: #46A3E5;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      display: inline-grid;
+      place-items: center;
+    }
+    .tg-conv-item.active .tg-unread-badge {
+      background: #FFFFFF;
+      color: #2B8AC9;
+    }
+
+    .tg-main {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      background: linear-gradient(155deg, #62B6F2 0%, #3F9BE0 48%, #277EC4 100%);
+    }
+    [data-theme="dark"] .tg-main {
+      background: linear-gradient(155deg, #16486E 0%, #0E324F 52%, #092136 100%);
+    }
+    .tg-chat-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--line);
+    }
+    .tg-chat-peer {
+      min-width: 0;
+    }
+    .tg-chat-peer-title {
+      font-weight: 850;
+      font-size: 13.5px;
+      color: var(--ink-strong);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .tg-chat-peer-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: #2E8ED6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .tg-chat-peer-sub {
+      color: #6CC3FF;
+    }
+    .tg-chat-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .tg-order-select {
+      height: 30px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      background: var(--input-bg);
+      color: var(--ink-strong);
+      font-size: 11px;
+      font-weight: 700;
+      max-width: 210px;
+    }
+    .tg-messages-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tg-date-pill {
+      align-self: center;
+      padding: 3px 11px;
+      border-radius: 999px;
+      background: rgba(11, 35, 56, 0.36);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 750;
+      margin: 2px 0 4px;
+      backdrop-filter: blur(4px);
+    }
+    .tg-empty-state {
+      margin: auto;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1A3342;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+    }
+    .tg-bubble {
+      position: relative;
+      max-width: 74%;
+      padding: 8px 12px 7px;
+      border-radius: 11px;
+      font-size: 12.5px;
+      line-height: 1.42;
+      word-break: break-word;
+      box-shadow: 0 3px 10px rgba(8, 26, 44, 0.16);
+    }
+    .tg-bubble.tech {
+      align-self: flex-end;
+      background: #EBF7FF;
+      color: #112938;
+      border-bottom-right-radius: 3px;
+    }
+    [data-theme="dark"] .tg-bubble.tech {
+      background: #235B85;
+      color: #F2FAFF;
+    }
+    .tg-bubble.client {
+      align-self: flex-start;
+      background: #FFFFFF;
+      color: #162630;
+      border-bottom-left-radius: 3px;
+    }
+    [data-theme="dark"] .tg-bubble.client {
+      background: #172B38;
+      color: #EAF6FA;
+    }
+    .tg-bubble-sender {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #2684CC;
+      margin-bottom: 2px;
+    }
+    [data-theme="dark"] .tg-bubble-sender {
+      color: #77C8FF;
+    }
+    .tg-bubble-meta {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      margin-top: 3px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #5C7787;
+    }
+    [data-theme="dark"] .tg-bubble-meta {
+      color: #A8C7DB;
+    }
+    .tg-composer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      background: var(--surface-2);
+      border-top: 1px solid var(--line);
+    }
+    .tg-composer-input {
+      flex: 1;
+      min-width: 0;
+      height: 36px;
+      padding: 6px 12px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ink-strong);
+      font-size: 12.5px;
+    }
+    .tg-composer-input:focus {
+      outline: none;
+    }
+    .tg-composer-send {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 8px;
+      border: 0;
+      background: #46A3E5;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 800;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .tg-composer-send:hover {
+      background: #2C8CD3;
+      transform: translateY(-1px);
+    }
+    @media (max-width: 820px) {
+      .tg-chat-shell {
+        grid-template-columns: 1fr;
+        max-height: none;
+      }
+      .tg-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        max-height: 195px;
+      }
+      .tg-messages-area {
+        min-height: 240px;
+        max-height: 320px;
+      }
+      .tg-order-select {
+        max-width: 140px;
+      }
+    }
+
     @media (max-width: 1000px) {
       .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1007,18 +1449,226 @@
       .footer { flex-direction: column; }
     }
   </style>
+
+  <style>
+    /* PORTAL PRINCIPAL DE CLIENTES */
+    .client-portal {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 22px 54px;
+    }
+    .hero-card {
+      border-radius: 22px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-1);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(54, 169, 225, 0.16);
+      color: var(--ink-strong);
+      border: 1px solid rgba(54, 169, 225, 0.35);
+    }
+    .hero-title {
+      margin: 12px 0 8px;
+      font-family: var(--font-brand);
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 900;
+      line-height: 1.12;
+      color: var(--ink-strong);
+    }
+    .hero-desc {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .company-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .company-info-item {
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+    }
+    .company-info-label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .company-info-val {
+      font-size: 12px;
+      font-weight: 750;
+      color: var(--ink-strong);
+    }
+
+    .lookup-panel {
+      border-radius: 18px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-2);
+      padding: 22px;
+      box-shadow: 0 12px 28px rgba(11, 25, 32, 0.10);
+    }
+    .lookup-panel h2 {
+      margin: 0 0 6px;
+      font-family: var(--font-brand);
+      font-size: 18px;
+      font-weight: 850;
+      color: var(--ink-strong);
+    }
+    .lookup-panel p {
+      margin: 0 0 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .lookup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .lookup-input {
+      height: 44px;
+      padding: 10px 14px;
+      border-radius: 11px;
+      border: 1px solid var(--line-strong);
+      background: var(--input-bg);
+      color: var(--ink-strong);
+      font-size: 13.5px;
+    }
+    .lookup-input:focus {
+      border-color: var(--afd-blue);
+      box-shadow: 0 0 0 3px rgba(54, 169, 225, 0.20);
+      outline: none;
+    }
+    .lookup-submit {
+      height: 44px;
+      border-radius: 11px;
+      border: 0;
+      background: linear-gradient(135deg, var(--afd-blue-deep), var(--afd-green-deep));
+      color: #FFFFFF;
+      font-family: var(--font-brand);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.03em;
+      box-shadow: 0 8px 20px rgba(24, 117, 168, 0.25);
+      transition: transform var(--transition), filter var(--transition);
+    }
+    .lookup-submit:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+    .lookup-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .services-strip {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .service-pillar {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--surface-1);
+      backdrop-filter: blur(12px);
+      padding: 18px;
+      box-shadow: var(--shadow-card);
+    }
+    .service-pillar h3 {
+      margin: 0 0 5px;
+      font-family: var(--font-brand);
+      font-size: 14px;
+      font-weight: 850;
+      color: var(--ink-strong);
+    }
+    .service-pillar p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .client-result-card {
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background: var(--surface-3);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .client-result-card:last-child { margin-bottom: 0; }
+    .client-result-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tech-login-btn {
+      min-height: 36px;
+      padding: 6px 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .tech-login-btn:hover {
+      background: rgba(149, 193, 31, 0.28);
+      border-color: var(--afd-green);
+    }
+
+    @media (max-width: 860px) {
+      .hero-card { grid-template-columns: 1fr; padding: 20px; }
+      .services-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .company-info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-left">
-      <a class="afd-brand-lockup" href="#top">
+      <a class="afd-brand-lockup" href="#top" id="brandHomeLink">
         <svg class="afd-logo-svg" viewBox="52.31 21.08 208.3 94.53" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo AFD Sistemas-EC">
-  <path class="afd-blue" d="M 91.160156 59.941406 L 74.082031 103.816406 C 73.820312 104.496094 73.351562 105.070312 72.742188 105.46875 C 69.921875 107.316406 61.410156 112.300781 54.976562 109.882812 C 53.160156 109.203125 52.3125 107.105469 53.058594 105.3125 L 81.519531 36.785156 C 81.589844 36.617188 81.667969 36.460938 81.761719 36.308594 C 82.992188 34.292969 91.828125 21.082031 105.523438 33.027344 C 105.902344 33.355469 106.199219 33.773438 106.402344 34.226562 L 132.015625 92.003906 C 132.015625 92.003906 133.570312 95.226562 135.078125 97.671875 C 136.203125 99.492188 135.414062 101.867188 133.445312 102.707031 C 129.816406 104.253906 123.699219 105.496094 115.277344 102.523438 C 114.308594 102.183594 113.535156 101.433594 113.167969 100.476562 L 97.652344 59.957031 C 96.515625 56.984375 92.3125 56.972656 91.160156 59.941406 "/>
-  <path class="afd-blue" d="M 241.394531 35.28125 C 241.882812 35.535156 242.390625 35.734375 242.875 35.980469 C 246.640625 37.878906 249.808594 40.449219 252.367188 43.683594 C 255.257812 47.332031 257.355469 51.578125 258.65625 56.417969 C 259.957031 61.261719 260.605469 66.390625 260.605469 71.8125 C 260.605469 80.300781 259.640625 86.886719 257.707031 91.566406 C 255.773438 96.246094 253.089844 100.164062 249.660156 103.328125 C 246.226562 106.488281 242.539062 108.59375 238.601562 109.640625 C 233.21875 111.085938 228.339844 111.808594 223.96875 111.808594 L 187.496094 111.808594 C 187.496094 111.808594 188.675781 92.53125 212.046875 93.761719 L 218.0625 93.761719 C 223.191406 93.761719 226.84375 93.191406 229.011719 92.054688 C 231.175781 90.914062 232.875 88.929688 234.105469 86.089844 C 235.332031 83.253906 235.945312 78.660156 235.945312 72.296875 C 235.945312 63.878906 234.574219 58.117188 231.828125 55.011719 C 229.082031 51.902344 224.53125 50.347656 218.171875 50.347656 L 212.046875 50.347656 C 212.046875 50.347656 220.882812 32.363281 227.398438 32.355469 C 227.398438 32.355469 238.082031 33.566406 241.394531 35.28125 "/>
-  <path class="afd-green" d="M 170.167969 57.9375 C 171.453125 54.972656 173.222656 52.898438 175.484375 51.710938 C 177.75 50.523438 181.558594 49.929688 186.914062 49.929688 L 193.191406 49.929688 C 217.589844 51.210938 218.820312 31.082031 218.820312 31.082031 L 180.746094 31.082031 C 176.183594 31.082031 170.6875 30.84375 165.066406 32.355469 C 160.957031 33.449219 156.148438 35.601562 153.929688 39.941406 C 152.542969 42.652344 151.054688 51.492188 151.054688 51.492188 L 140.527344 96.011719 C 134.296875 112.199219 118.316406 106.496094 115.164062 105.183594 C 114.808594 105.035156 114.617188 104.945312 114.617188 104.945312 C 114.617188 104.945312 118.941406 110.675781 127.335938 110.675781 C 127.335938 110.675781 153.585938 115.609375 161.183594 97.347656 Z M 170.167969 57.9375 "/>
-  <path class="afd-green" d="M 209.578125 61.550781 C 209.578125 61.550781 207.101562 79.109375 189.953125 79.542969 L 173.023438 79.941406 C 173.023438 79.941406 169.425781 68.554688 179.949219 61.550781 Z M 209.578125 61.550781 "/>
-  <path class="afd-blue" d="M 93.796875 72.082031 C 93.796875 72.082031 77.695312 94.601562 94.585938 95.796875 C 94.585938 95.796875 113.144531 92.042969 93.796875 72.082031 "/>
-</svg>
+          <path class="afd-blue" d="M 91.160156 59.941406 L 74.082031 103.816406 C 73.820312 104.496094 73.351562 105.070312 72.742188 105.46875 C 69.921875 107.316406 61.410156 112.300781 54.976562 109.882812 C 53.160156 109.203125 52.3125 107.105469 53.058594 105.3125 L 81.519531 36.785156 C 81.589844 36.617188 81.667969 36.460938 81.761719 36.308594 C 82.992188 34.292969 91.828125 21.082031 105.523438 33.027344 C 105.902344 33.355469 106.199219 33.773438 106.402344 34.226562 L 132.015625 92.003906 C 132.015625 92.003906 133.570312 95.226562 135.078125 97.671875 C 136.203125 99.492188 135.414062 101.867188 133.445312 102.707031 C 129.816406 104.253906 123.699219 105.496094 115.277344 102.523438 C 114.308594 102.183594 113.535156 101.433594 113.167969 100.476562 L 97.652344 59.957031 C 96.515625 56.984375 92.3125 56.972656 91.160156 59.941406 "/>
+          <path class="afd-blue" d="M 241.394531 35.28125 C 241.882812 35.535156 242.390625 35.734375 242.875 35.980469 C 246.640625 37.878906 249.808594 40.449219 252.367188 43.683594 C 255.257812 47.332031 257.355469 51.578125 258.65625 56.417969 C 259.957031 61.261719 260.605469 66.390625 260.605469 71.8125 C 260.605469 80.300781 259.640625 86.886719 257.707031 91.566406 C 255.773438 96.246094 253.089844 100.164062 249.660156 103.328125 C 246.226562 106.488281 242.539062 108.59375 238.601562 109.640625 C 233.21875 111.085938 228.339844 111.808594 223.96875 111.808594 L 187.496094 111.808594 C 187.496094 111.808594 188.675781 92.53125 212.046875 93.761719 L 218.0625 93.761719 C 223.191406 93.761719 226.84375 93.191406 229.011719 92.054688 C 231.175781 90.914062 232.875 88.929688 234.105469 86.089844 C 235.332031 83.253906 235.945312 78.660156 235.945312 72.296875 C 235.945312 63.878906 234.574219 58.117188 231.828125 55.011719 C 229.082031 51.902344 224.53125 50.347656 218.171875 50.347656 L 212.046875 50.347656 C 212.046875 50.347656 220.882812 32.363281 227.398438 32.355469 C 227.398438 32.355469 238.082031 33.566406 241.394531 35.28125 "/>
+          <path class="afd-green" d="M 170.167969 57.9375 C 171.453125 54.972656 173.222656 52.898438 175.484375 51.710938 C 177.75 50.523438 181.558594 49.929688 186.914062 49.929688 L 193.191406 49.929688 C 217.589844 51.210938 218.820312 31.082031 218.820312 31.082031 L 180.746094 31.082031 C 176.183594 31.082031 170.6875 30.84375 165.066406 32.355469 C 160.957031 33.449219 156.148438 35.601562 153.929688 39.941406 C 152.542969 42.652344 151.054688 51.492188 151.054688 51.492188 L 140.527344 96.011719 C 134.296875 112.199219 118.316406 106.496094 115.164062 105.183594 C 114.808594 105.035156 114.617188 104.945312 114.617188 104.945312 C 114.617188 104.945312 118.941406 110.675781 127.335938 110.675781 C 127.335938 110.675781 153.585938 115.609375 161.183594 97.347656 Z M 170.167969 57.9375 "/>
+          <path class="afd-green" d="M 209.578125 61.550781 C 209.578125 61.550781 207.101562 79.109375 189.953125 79.542969 L 173.023438 79.941406 C 173.023438 79.941406 169.425781 68.554688 179.949219 61.550781 Z M 209.578125 61.550781 "/>
+          <path class="afd-blue" d="M 93.796875 72.082031 C 93.796875 72.082031 77.695312 94.601562 94.585938 95.796875 C 94.585938 95.796875 113.144531 92.042969 93.796875 72.082031 "/>
+        </svg>
         <div class="afd-wordmark">
           <span class="afd-wordmark-main">AFDSISTEMAS</span>
           <span class="afd-wordmark-sub">LO MEJOR EN TECNOLOGÍA</span>
@@ -1028,7 +1678,8 @@
     </div>
 
     <div class="topbar-right">
-      <span class="workspace-badge">ESPACIO DE TRABAJO</span>
+      <button type="button" class="tech-login-btn hidden" id="backToClientPortalBtn">← Portal Clientes</button>
+      <button type="button" class="tech-login-btn" id="openTechLoginBtn">🔒 Acceso Técnicos</button>
 
       <!-- ICONO DE AJUSTES PARA CAMBIAR ENTRE TEMA CLARO Y OSCURO -->
       <div class="settings-wrap">
@@ -1061,7 +1712,63 @@
     </div>
   </header>
 
-  <main id="top">
+  <!-- VISTA PRINCIPAL PARA CLIENTES -->
+  <section class="client-portal" id="clientPortalView" aria-labelledby="clientHeroTitle">
+    <div class="hero-card">
+      <div>
+        <span class="hero-tag">Servicio Técnico Especializado · Quito</span>
+        <h1 class="hero-title" id="clientHeroTitle">AFDSISTEMAS · Tecnología y Soporte Técnico</h1>
+        <p class="hero-desc">
+          Diagnóstico, mantenimiento y reparación de impresoras, equipos informáticos y sistemas electrónicos con respaldo técnico transparente y atención directa.
+        </p>
+        <div class="company-info-grid">
+          <div class="company-info-item">
+            <span class="company-info-label">Dirección</span>
+            <span class="company-info-val">Av. Maldonado S34-289 y Diego Gutiérrez (frente a Plywood)</span>
+          </div>
+          <div class="company-info-item">
+            <span class="company-info-label">Teléfonos / WhatsApp</span>
+            <span class="company-info-val">022733872 · 0992835549</span>
+          </div>
+          <div class="company-info-item">
+            <span class="company-info-label">RUC / Identificación</span>
+            <span class="company-info-val">1803908548001</span>
+          </div>
+          <div class="company-info-item">
+            <span class="company-info-label">Sitio Web</span>
+            <span class="company-info-val">www.afdsistemas.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lookup-panel">
+        <h2>Consulta el estado de tu equipo</h2>
+        <p>Ingresa tu nombre, celular, cédula/RUC o número de orden para ver únicamente tu información y el estado de tu impresora.</p>
+        <form class="lookup-form" id="clientLookupForm">
+          <input class="lookup-input" id="clientQueryInput" type="text" required placeholder="Ej. Nombre, 0992835549, cédula o Nro. orden">
+          <button type="submit" class="lookup-submit">Consultar mi equipo</button>
+          <span class="lookup-hint">Solo se muestran los registros que coincidan exactamente con tu búsqueda personal.</span>
+        </form>
+      </div>
+    </div>
+
+    <div class="services-strip">
+      <article class="service-pillar">
+        <h3>Impresoras y Cabezales</h3>
+        <p>Diagnóstico de fallas, limpieza, revisión electrónica y puesta a punto de impresoras de oficina y hogar.</p>
+      </article>
+      <article class="service-pillar">
+        <h3>Soporte y Hardware</h3>
+        <p>Evaluación técnica de placas, fuentes, conexiones y componentes con informe claro del estado del servicio.</p>
+      </article>
+      <article class="service-pillar">
+        <h3>Retiro Seguro</h3>
+        <p>Consulta en línea el avance de tu orden antes de acercarte a retirar tu equipo con tu cédula física.</p>
+      </article>
+    </div>
+  </section>
+
+<main id="top" class="hidden">
     <div class="breadcrumb-row">
       <nav class="breadcrumb" aria-label="Ruta de navegación">
         <span>OPERACIONES</span><span aria-hidden="true">/</span><strong>REGISTROS</strong>
@@ -1072,12 +1779,12 @@
       <div class="page-heading-brand">
         <div class="page-logo-box">
           <svg class="afd-logo-svg" viewBox="52.31 21.08 208.3 94.53" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo AFD Sistemas-EC">
-  <path class="afd-blue" d="M 91.160156 59.941406 L 74.082031 103.816406 C 73.820312 104.496094 73.351562 105.070312 72.742188 105.46875 C 69.921875 107.316406 61.410156 112.300781 54.976562 109.882812 C 53.160156 109.203125 52.3125 107.105469 53.058594 105.3125 L 81.519531 36.785156 C 81.589844 36.617188 81.667969 36.460938 81.761719 36.308594 C 82.992188 34.292969 91.828125 21.082031 105.523438 33.027344 C 105.902344 33.355469 106.199219 33.773438 106.402344 34.226562 L 132.015625 92.003906 C 132.015625 92.003906 133.570312 95.226562 135.078125 97.671875 C 136.203125 99.492188 135.414062 101.867188 133.445312 102.707031 C 129.816406 104.253906 123.699219 105.496094 115.277344 102.523438 C 114.308594 102.183594 113.535156 101.433594 113.167969 100.476562 L 97.652344 59.957031 C 96.515625 56.984375 92.3125 56.972656 91.160156 59.941406 "/>
-  <path class="afd-blue" d="M 241.394531 35.28125 C 241.882812 35.535156 242.390625 35.734375 242.875 35.980469 C 246.640625 37.878906 249.808594 40.449219 252.367188 43.683594 C 255.257812 47.332031 257.355469 51.578125 258.65625 56.417969 C 259.957031 61.261719 260.605469 66.390625 260.605469 71.8125 C 260.605469 80.300781 259.640625 86.886719 257.707031 91.566406 C 255.773438 96.246094 253.089844 100.164062 249.660156 103.328125 C 246.226562 106.488281 242.539062 108.59375 238.601562 109.640625 C 233.21875 111.085938 228.339844 111.808594 223.96875 111.808594 L 187.496094 111.808594 C 187.496094 111.808594 188.675781 92.53125 212.046875 93.761719 L 218.0625 93.761719 C 223.191406 93.761719 226.84375 93.191406 229.011719 92.054688 C 231.175781 90.914062 232.875 88.929688 234.105469 86.089844 C 235.332031 83.253906 235.945312 78.660156 235.945312 72.296875 C 235.945312 63.878906 234.574219 58.117188 231.828125 55.011719 C 229.082031 51.902344 224.53125 50.347656 218.171875 50.347656 L 212.046875 50.347656 C 212.046875 50.347656 220.882812 32.363281 227.398438 32.355469 C 227.398438 32.355469 238.082031 33.566406 241.394531 35.28125 "/>
-  <path class="afd-green" d="M 170.167969 57.9375 C 171.453125 54.972656 173.222656 52.898438 175.484375 51.710938 C 177.75 50.523438 181.558594 49.929688 186.914062 49.929688 L 193.191406 49.929688 C 217.589844 51.210938 218.820312 31.082031 218.820312 31.082031 L 180.746094 31.082031 C 176.183594 31.082031 170.6875 30.84375 165.066406 32.355469 C 160.957031 33.449219 156.148438 35.601562 153.929688 39.941406 C 152.542969 42.652344 151.054688 51.492188 151.054688 51.492188 L 140.527344 96.011719 C 134.296875 112.199219 118.316406 106.496094 115.164062 105.183594 C 114.808594 105.035156 114.617188 104.945312 114.617188 104.945312 C 114.617188 104.945312 118.941406 110.675781 127.335938 110.675781 C 127.335938 110.675781 153.585938 115.609375 161.183594 97.347656 Z M 170.167969 57.9375 "/>
-  <path class="afd-green" d="M 209.578125 61.550781 C 209.578125 61.550781 207.101562 79.109375 189.953125 79.542969 L 173.023438 79.941406 C 173.023438 79.941406 169.425781 68.554688 179.949219 61.550781 Z M 209.578125 61.550781 "/>
-  <path class="afd-blue" d="M 93.796875 72.082031 C 93.796875 72.082031 77.695312 94.601562 94.585938 95.796875 C 94.585938 95.796875 113.144531 92.042969 93.796875 72.082031 "/>
-</svg>
+            <path class="afd-blue" d="M 91.160156 59.941406 L 74.082031 103.816406 C 73.820312 104.496094 73.351562 105.070312 72.742188 105.46875 C 69.921875 107.316406 61.410156 112.300781 54.976562 109.882812 C 53.160156 109.203125 52.3125 107.105469 53.058594 105.3125 L 81.519531 36.785156 C 81.589844 36.617188 81.667969 36.460938 81.761719 36.308594 C 82.992188 34.292969 91.828125 21.082031 105.523438 33.027344 C 105.902344 33.355469 106.199219 33.773438 106.402344 34.226562 L 132.015625 92.003906 C 132.015625 92.003906 133.570312 95.226562 135.078125 97.671875 C 136.203125 99.492188 135.414062 101.867188 133.445312 102.707031 C 129.816406 104.253906 123.699219 105.496094 115.277344 102.523438 C 114.308594 102.183594 113.535156 101.433594 113.167969 100.476562 L 97.652344 59.957031 C 96.515625 56.984375 92.3125 56.972656 91.160156 59.941406 "/>
+            <path class="afd-blue" d="M 241.394531 35.28125 C 241.882812 35.535156 242.390625 35.734375 242.875 35.980469 C 246.640625 37.878906 249.808594 40.449219 252.367188 43.683594 C 255.257812 47.332031 257.355469 51.578125 258.65625 56.417969 C 259.957031 61.261719 260.605469 66.390625 260.605469 71.8125 C 260.605469 80.300781 259.640625 86.886719 257.707031 91.566406 C 255.773438 96.246094 253.089844 100.164062 249.660156 103.328125 C 246.226562 106.488281 242.539062 108.59375 238.601562 109.640625 C 233.21875 111.085938 228.339844 111.808594 223.96875 111.808594 L 187.496094 111.808594 C 187.496094 111.808594 188.675781 92.53125 212.046875 93.761719 L 218.0625 93.761719 C 223.191406 93.761719 226.84375 93.191406 229.011719 92.054688 C 231.175781 90.914062 232.875 88.929688 234.105469 86.089844 C 235.332031 83.253906 235.945312 78.660156 235.945312 72.296875 C 235.945312 63.878906 234.574219 58.117188 231.828125 55.011719 C 229.082031 51.902344 224.53125 50.347656 218.171875 50.347656 L 212.046875 50.347656 C 212.046875 50.347656 220.882812 32.363281 227.398438 32.355469 C 227.398438 32.355469 238.082031 33.566406 241.394531 35.28125 "/>
+            <path class="afd-green" d="M 170.167969 57.9375 C 171.453125 54.972656 173.222656 52.898438 175.484375 51.710938 C 177.75 50.523438 181.558594 49.929688 186.914062 49.929688 L 193.191406 49.929688 C 217.589844 51.210938 218.820312 31.082031 218.820312 31.082031 L 180.746094 31.082031 C 176.183594 31.082031 170.6875 30.84375 165.066406 32.355469 C 160.957031 33.449219 156.148438 35.601562 153.929688 39.941406 C 152.542969 42.652344 151.054688 51.492188 151.054688 51.492188 L 140.527344 96.011719 C 134.296875 112.199219 118.316406 106.496094 115.164062 105.183594 C 114.808594 105.035156 114.617188 104.945312 114.617188 104.945312 C 114.617188 104.945312 118.941406 110.675781 127.335938 110.675781 C 127.335938 110.675781 153.585938 115.609375 161.183594 97.347656 Z M 170.167969 57.9375 "/>
+            <path class="afd-green" d="M 209.578125 61.550781 C 209.578125 61.550781 207.101562 79.109375 189.953125 79.542969 L 173.023438 79.941406 C 173.023438 79.941406 169.425781 68.554688 179.949219 61.550781 Z M 209.578125 61.550781 "/>
+            <path class="afd-blue" d="M 93.796875 72.082031 C 93.796875 72.082031 77.695312 94.601562 94.585938 95.796875 C 94.585938 95.796875 113.144531 92.042969 93.796875 72.082031 "/>
+          </svg>
           <span class="page-logo-caption">SISTEMAS-EC</span>
         </div>
         <div>
@@ -1187,6 +1894,22 @@
         <span>Base de datos 1.0 · Drive: afdsistemas.base.datos@gmail.com + respaldo local</span>
         <span class="save-status" id="saveStatus">Datos guardados localmente</span>
       </footer>
+    </section>
+
+    <!-- APARTADO DE CHAT ENTRE CLIENTE Y TÉCNICO DENTRO DE LA BASE TÉCNICA -->
+    <section class="records-card" id="techChatSection" aria-labelledby="techChatHeading" style="margin-top:22px">
+      <div class="records-header">
+        <div>
+          <h2 id="techChatHeading">Chat con Clientes</h2>
+          <p>Revisa los mensajes enviados desde la consulta de clientes y responde directamente por orden.</p>
+        </div>
+        <div class="header-actions">
+          <span class="version-pill" id="techChatSummaryPill">0 conversaciones</span>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:14px 18px 18px">
+        <div id="techChatPanel"></div>
+      </div>
     </section>
   </main>
 
@@ -1333,13 +2056,63 @@
 
   <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 
-  <script>
+  <!-- VENTANA FLOTANTE DE CONSULTA PARA CLIENTE -->
+  <div class="modal-backdrop hidden" id="clientLookupModal" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="clientLookupModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="clientLookupModalTitle">Estado de tu equipo / impresora</h2>
+          <p id="clientLookupModalSubtitle">Información privada de tu orden de servicio.</p>
+        </div>
+        <button type="button" class="close-btn" id="closeClientLookupModalBtn" aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-body" id="clientLookupResultsBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="doneClientLookupBtn">Entendido</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL DE ACCESO SOLO PARA TÉCNICOS -->
+  <div class="modal-backdrop hidden" id="techLoginModal" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="techLoginModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="techLoginModalTitle">Acceso a Base Técnica</h2>
+          <p>Área restringida exclusivamente para personal técnico autorizado.</p>
+        </div>
+        <button type="button" class="close-btn" id="closeTechLoginModalBtn" aria-label="Cerrar">×</button>
+      </div>
+      <form id="techLoginForm">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="field wide">
+              <label for="techUserInput">Usuario técnico *</label>
+              <input class="control" id="techUserInput" type="text" autocomplete="username" required placeholder="Ingresa tu nombre de usuario">
+            </div>
+            <div class="field wide">
+              <label for="techPassInput">Clave *</label>
+              <input class="control" id="techPassInput" type="password" autocomplete="current-password" required placeholder="Ingresa tu clave">
+            </div>
+          </div>
+          <p class="settings-help" id="techLoginError" style="color:var(--danger);font-weight:700;margin-top:8px" aria-live="polite"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelTechLoginBtn">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Ingresar a Base Técnica</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+<script>
     (() => {
       "use strict";
 
       const STORAGE_KEY = "afd_bt_base_tecnica_registros_v2";
       const THEME_KEY = "afd_bt_theme_v2";
       const CLOUD_CONFIG_KEY = "afd_bt_cloud_config_v1";
+      const CHAT_STORAGE_KEY = "afd_bt_chat_mensajes_v1";
 
       // PEGA AQUÍ TU URL /exec DE GOOGLE APPS SCRIPT (afdsistemas.base.datos@gmail.com)
       // PARA QUE CUALQUIER DISPOSITIVO NUEVO SE CONECTE AUTOMÁTICAMENTE SIN CONFIGURAR NADA:
@@ -1399,7 +2172,6 @@
       }
 
       function buildCloudHeaders(cfg) {
-        // Para Google Apps Script usamos text/plain para evitar preflight CORS OPTIONS
         if (isGoogleAppsScriptUrl(cfg.endpoint)) {
           return { "Content-Type": "text/plain;charset=utf-8" };
         }
@@ -1440,6 +2212,85 @@
             updatedAt: Number(r.updatedAt || 0) || Date.now()
           };
         });
+      }
+
+      /* CHAT ENTRE CLIENTE Y TÉCNICO POR ORDEN */
+      function loadChatMessages() {
+        try {
+          const raw = localStorage.getItem(CHAT_STORAGE_KEY);
+          if (!raw) return {};
+          const parsed = JSON.parse(raw);
+          return parsed && typeof parsed === "object" ? parsed : {};
+        } catch (_) {
+          return {};
+        }
+      }
+
+      let chatByOrder = loadChatMessages();
+
+      function saveChatMessages() {
+        try {
+          localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(chatByOrder));
+        } catch (_) {}
+      }
+
+      function mergeChatMessages(incomingChat) {
+        if (!incomingChat || typeof incomingChat !== "object") return false;
+        let changed = false;
+        for (const [orderKey, msgs] of Object.entries(incomingChat)) {
+          if (!Array.isArray(msgs)) continue;
+          const existing = Array.isArray(chatByOrder[orderKey]) ? chatByOrder[orderKey] : [];
+          const byId = new Map();
+          for (const m of existing) {
+            if (m && m.id) byId.set(String(m.id), m);
+          }
+          for (const m of msgs) {
+            if (m && m.id && !byId.has(String(m.id))) {
+              byId.set(String(m.id), m);
+              changed = true;
+            }
+          }
+          if (changed || !chatByOrder[orderKey]) {
+            chatByOrder[orderKey] = [...byId.values()].sort((a, b) => Number(a.ts || 0) - Number(b.ts || 0));
+          }
+        }
+        if (changed) saveChatMessages();
+        return changed;
+      }
+
+      function nowCompactStamp() {
+        const d = new Date();
+        const dd = String(d.getDate()).padStart(2, "0");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const yy = String(d.getFullYear()).slice(-2);
+        const hh = String(d.getHours()).padStart(2, "0");
+        const mi = String(d.getMinutes()).padStart(2, "0");
+        return `${dd}/${mm}/${yy} ${hh}:${mi}`;
+      }
+
+      function addChatMessage(orderKey, sender, text) {
+        const key = String(orderKey || "").trim();
+        const cleanText = String(text || "").trim();
+        if (!key || !cleanText) return null;
+        if (!Array.isArray(chatByOrder[key])) chatByOrder[key] = [];
+        const msg = {
+          id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+          sender: sender === "tech" ? "tech" : "client",
+          text: cleanText,
+          stamp: nowCompactStamp(),
+          ts: Date.now()
+        };
+        chatByOrder[key].push(msg);
+        saveChatMessages();
+        const cfg = loadCloudConfig();
+        if (cfg.endpoint && isGoogleAppsScriptUrl(cfg.endpoint)) {
+          fetch(cfg.endpoint, {
+            method: "POST",
+            headers: buildCloudHeaders(cfg),
+            body: JSON.stringify({ mode: "chat", orderKey: key, message: msg, messages: chatByOrder[key] })
+          }).catch(() => {});
+        }
+        return msg;
       }
 
       let isSyncInFlight = false;
@@ -1483,10 +2334,17 @@
           const currentSerialized = JSON.stringify(records);
           const incomingSerialized = JSON.stringify(incoming);
 
+          let chatChanged = false;
+          if (data && typeof data === "object" && data.chats) {
+            chatChanged = mergeChatMessages(data.chats);
+          }
+
           if (currentSerialized !== incomingSerialized) {
             records = incoming;
             localStorage.setItem(STORAGE_KEY, incomingSerialized);
             render();
+          } else if (chatChanged && typeof renderTechChat === "function") {
+            renderTechChat();
           }
 
           const nowTime = new Date().toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" });
@@ -1524,7 +2382,7 @@
           const res = await fetch(cfg.endpoint, {
             method: isGas ? "POST" : "PUT",
             headers: buildCloudHeaders(cfg),
-            body: JSON.stringify(isGas ? { mode: "replace", records } : records)
+            body: JSON.stringify(isGas ? { mode: "replace", records, chats: chatByOrder } : records)
           });
           if (!res.ok) throw new Error("HTTP " + res.status);
           const data = await res.json().catch(() => ({}));
@@ -1697,6 +2555,45 @@
         if (!d) return "00/00/0000";
         const p = d.split("-");
         return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : d;
+      }
+
+      /* FORMATO COMPACTO ESTILO ORDENADOR: DD/MM/AA HH:MM */
+      function formatCompactDateTime(d, t) {
+        let dd = "", mm = "", yy = "";
+        const rawDate = String(d || "").trim();
+        const isoMatch = rawDate.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        const slashMatch = rawDate.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+        if (isoMatch) {
+          yy = isoMatch[1].slice(-2);
+          mm = isoMatch[2];
+          dd = isoMatch[3];
+        } else if (slashMatch) {
+          dd = slashMatch[1].padStart(2, "0");
+          mm = slashMatch[2].padStart(2, "0");
+          yy = slashMatch[3].slice(-2);
+        } else if (rawDate) {
+          const parsed = new Date(rawDate);
+          if (!Number.isNaN(parsed.getTime())) {
+            dd = String(parsed.getDate()).padStart(2, "0");
+            mm = String(parsed.getMonth() + 1).padStart(2, "0");
+            yy = String(parsed.getFullYear()).slice(-2);
+          }
+        }
+
+        let hhmm = "";
+        const rawTime = String(t || "").trim();
+        const timeMatch = rawTime.match(/(\d{1,2}):(\d{2})/);
+        if (timeMatch) {
+          hhmm = `${timeMatch[1].padStart(2, "0")}:${timeMatch[2]}`;
+        } else if (rawDate) {
+          const parsed = new Date(rawDate);
+          if (!Number.isNaN(parsed.getTime())) {
+            hhmm = `${String(parsed.getHours()).padStart(2, "0")}:${String(parsed.getMinutes()).padStart(2, "0")}`;
+          }
+        }
+
+        const datePart = (dd && mm && yy) ? `${dd}/${mm}/${yy}` : "00/00/00";
+        return hhmm ? `${datePart} ${hhmm}` : datePart;
       }
 
       function formatMoneyPlain(v) {
@@ -2055,6 +2952,241 @@
               </div>
             </article>`;
         }).join("");
+
+        if (typeof renderTechChat === "function") renderTechChat();
+      }
+
+      /* RENDERIZADO DEL CHAT TÉCNICO POR ORDEN */
+      function renderMessagesListHtml(orderKey) {
+        const msgs = Array.isArray(chatByOrder[orderKey]) ? chatByOrder[orderKey] : [];
+        if (!msgs.length) {
+          return `<div class="chat-empty">Aún no hay mensajes en esta orden. Escribe aquí para iniciar la conversación.</div>`;
+        }
+        return msgs.map((m) => {
+          const isTechMsg = m.sender === "tech";
+          const who = isTechMsg ? "Técnico" : "Cliente";
+          return `
+            <div class="chat-msg ${isTechMsg ? "tech" : "client"}">
+              <span>${escapeHtml(m.text)}</span>
+              <span class="chat-meta">${who} · ${escapeHtml(m.stamp || "")}</span>
+            </div>`;
+        }).join("");
+      }
+
+      let techChatActiveKey = "";
+      let techChatSearchQuery = "";
+
+      const AVATAR_PALETTE = ["#E85D75", "#F08A4B", "#E6B83A", "#68B947", "#36A9E1", "#5E7CE2", "#9B6BDF", "#D95F9C"];
+
+      function getInitials(name) {
+        const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+        if (!parts.length) return "CL";
+        if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+        return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+      }
+
+      function getAvatarColor(key) {
+        let sum = 0;
+        for (let i = 0; i < key.length; i++) sum += key.charCodeAt(i);
+        return AVATAR_PALETTE[sum % AVATAR_PALETTE.length];
+      }
+
+      function extractShortTime(stamp) {
+        const m = String(stamp || "").match(/(\d{1,2}:\d{2})/);
+        return m ? m[1] : "";
+      }
+
+      function renderTgMessagesHtml(orderKey, clientName) {
+        const msgs = Array.isArray(chatByOrder[orderKey]) ? chatByOrder[orderKey] : [];
+        if (!msgs.length) {
+          return `<div class="tg-empty-state">Aún no hay mensajes en la Orden Nro. ${escapeHtml(orderKey)}. Escribe abajo para iniciar la conversación.</div>`;
+        }
+        let html = "";
+        let lastDate = "";
+        for (const m of msgs) {
+          const dateMatch = String(m.stamp || "").match(/^(\d{2}\/\d{2}\/\d{2})/);
+          const dayLabel = dateMatch ? dateMatch[1] : "";
+          if (dayLabel && dayLabel !== lastDate) {
+            lastDate = dayLabel;
+            html += `<div class="tg-date-pill">${escapeHtml(dayLabel)}</div>`;
+          }
+          const isTechMsg = m.sender === "tech";
+          const senderLabel = isTechMsg ? "Técnico · AFD" : (clientName || "Cliente");
+          const shortTime = extractShortTime(m.stamp) || m.stamp || "";
+          const checkMark = isTechMsg ? `<span aria-hidden="true">✓✓</span>` : "";
+          html += `
+            <div class="tg-bubble ${isTechMsg ? "tech" : "client"}">
+              ${!isTechMsg ? `<span class="tg-bubble-sender">${escapeHtml(senderLabel)}</span>` : ""}
+              <span>${escapeHtml(m.text)}</span>
+              <span class="tg-bubble-meta">${escapeHtml(shortTime)} ${checkMark}</span>
+            </div>`;
+        }
+        return html;
+      }
+
+      function renderTechChat() {
+        const panel = $("techChatPanel");
+        const pill = $("techChatSummaryPill");
+        if (!panel) return;
+
+        const allKeys = new Set(records.map((r) => String(r.orderNumber || r.id)));
+        for (const k of Object.keys(chatByOrder)) allKeys.add(String(k));
+        const orderedKeys = [...allKeys].filter(Boolean).sort((a, b) => {
+          const msgsA = chatByOrder[a] || [];
+          const msgsB = chatByOrder[b] || [];
+          const lastTsA = msgsA.length ? Number(msgsA[msgsA.length - 1].ts || 0) : 0;
+          const lastTsB = msgsB.length ? Number(msgsB[msgsB.length - 1].ts || 0) : 0;
+          if (lastTsB !== lastTsA) return lastTsB - lastTsA;
+          return b.localeCompare(a, undefined, { numeric: true });
+        });
+
+        const totalWithMsgs = orderedKeys.filter((k) => (chatByOrder[k] || []).length > 0).length;
+        if (pill) {
+          pill.textContent = `${orderedKeys.length} ${orderedKeys.length === 1 ? "orden" : "órdenes"} · ${totalWithMsgs} con chat`;
+        }
+
+        if (!orderedKeys.length) {
+          panel.innerHTML = `<div class="chat-empty">No hay órdenes registradas para chatear.</div>`;
+          return;
+        }
+
+        if (!techChatActiveKey || !orderedKeys.includes(techChatActiveKey)) {
+          const firstWithMsgs = orderedKeys.find((k) => (chatByOrder[k] || []).length > 0);
+          techChatActiveKey = firstWithMsgs || orderedKeys[0];
+        }
+
+        const q = techChatSearchQuery.trim().toLocaleLowerCase("es");
+        const visibleKeys = q
+          ? orderedKeys.filter((k) => {
+              const rec = records.find((r) => String(r.orderNumber || r.id) === String(k));
+              const msgs = chatByOrder[k] || [];
+              const lastMsgText = msgs.length ? String(msgs[msgs.length - 1].text || "") : "";
+              const hay = [k, rec?.client || "", rec?.equipment || "", rec?.phone || "", lastMsgText]
+                .join(" ").toLocaleLowerCase("es");
+              return hay.includes(q);
+            })
+          : orderedKeys;
+
+        const sidebarItemsHtml = visibleKeys.length
+          ? visibleKeys.map((k) => {
+              const rec = records.find((r) => String(r.orderNumber || r.id) === String(k));
+              const msgs = Array.isArray(chatByOrder[k]) ? chatByOrder[k] : [];
+              const lastMsg = msgs.length ? msgs[msgs.length - 1] : null;
+              const clientTitle = rec?.client ? `${rec.client} · #${k}` : `Orden #${k}`;
+              const previewText = lastMsg
+                ? `${lastMsg.sender === "tech" ? "Tú: " : ""}${lastMsg.text}`
+                : (rec?.equipment || "Sin mensajes aún");
+              const timeLabel = lastMsg ? (extractShortTime(lastMsg.stamp) || "") : "";
+              const isActive = String(k) === String(techChatActiveKey);
+              const badgeHtml = msgs.length > 0
+                ? `<span class="tg-unread-badge" title="${msgs.length} mensaje(s)">${msgs.length}</span>`
+                : "";
+              return `
+                <button type="button" class="tg-conv-item ${isActive ? "active" : ""}" data-tg-order="${escapeHtml(k)}">
+                  <span class="tg-avatar" style="background:${getAvatarColor(k)}">${escapeHtml(getInitials(rec?.client || ("Orden " + k)))}</span>
+                  <span class="tg-conv-main">
+                    <span class="tg-conv-row1">
+                      <span class="tg-conv-name">${escapeHtml(clientTitle)}</span>
+                      <span class="tg-conv-time">${escapeHtml(timeLabel)}</span>
+                    </span>
+                    <span class="tg-conv-row2">
+                      <span class="tg-conv-preview">${escapeHtml(previewText)}</span>
+                      ${badgeHtml}
+                    </span>
+                  </span>
+                </button>`;
+            }).join("")
+          : `<div class="chat-empty">Sin coincidencias para "${escapeHtml(techChatSearchQuery)}".</div>`;
+
+        const selectOptionsHtml = orderedKeys.map((k) => {
+          const rec = records.find((r) => String(r.orderNumber || r.id) === String(k));
+          const count = (chatByOrder[k] || []).length;
+          const label = rec
+            ? `Orden ${k} · ${rec.client || "Cliente"}${count ? ` (${count})` : ""}`
+            : `Orden ${k}${count ? ` (${count})` : ""}`;
+          return `<option value="${escapeHtml(k)}" ${String(k) === String(techChatActiveKey) ? "selected" : ""}>${escapeHtml(label)}</option>`;
+        }).join("");
+
+        const activeKey = techChatActiveKey;
+        const activeRec = records.find((r) => String(r.orderNumber || r.id) === String(activeKey));
+        const peerTitle = activeRec?.client
+          ? `${activeRec.client} · Orden Nro. ${activeKey}`
+          : `Orden Nro. ${activeKey}`;
+        const peerSub = activeRec
+          ? `${activeRec.equipment || "Equipo"} · ${activeRec.status || "Pendiente"}${activeRec.phone ? ` · ${activeRec.phone}` : ""}`
+          : "Chat directo de orden";
+
+        panel.innerHTML = `
+          <div class="tg-chat-shell">
+            <aside class="tg-sidebar" aria-label="Conversaciones por orden">
+              <div class="tg-sidebar-top">
+                <span class="tg-menu-icon" aria-hidden="true">☰</span>
+                <input type="search" class="tg-search-input" id="tgChatSearchInput" value="${escapeHtml(techChatSearchQuery)}" placeholder="Buscar cliente u orden...">
+              </div>
+              <div class="tg-conv-list" id="tgConvList">${sidebarItemsHtml}</div>
+            </aside>
+            <div class="tg-main">
+              <div class="tg-chat-topbar">
+                <div class="tg-chat-peer">
+                  <div class="tg-chat-peer-title">${escapeHtml(peerTitle)}</div>
+                  <div class="tg-chat-peer-sub">${escapeHtml(peerSub)}</div>
+                </div>
+                <div class="tg-chat-actions">
+                  <select id="techChatOrderSelect" class="tg-order-select" aria-label="Seleccionar orden para chatear">${selectOptionsHtml}</select>
+                </div>
+              </div>
+              <div class="tg-messages-area" id="techChatMessages">${renderTgMessagesHtml(activeKey, activeRec?.client)}</div>
+              <form class="tg-composer" id="techChatSendForm">
+                <input class="tg-composer-input" id="techChatInput" type="text" required placeholder="Escribe un mensaje...">
+                <button type="submit" class="tg-composer-send">Enviar</button>
+              </form>
+            </div>
+          </div>`;
+
+        const box = $("techChatMessages");
+        if (box) box.scrollTop = box.scrollHeight;
+
+        const searchEl = $("tgChatSearchInput");
+        if (searchEl) {
+          searchEl.addEventListener("input", (e) => {
+            techChatSearchQuery = e.target.value || "";
+            renderTechChat();
+            const updatedSearch = $("tgChatSearchInput");
+            if (updatedSearch) {
+              updatedSearch.focus();
+              const len = updatedSearch.value.length;
+              updatedSearch.setSelectionRange(len, len);
+            }
+          });
+        }
+
+        panel.querySelectorAll("[data-tg-order]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            techChatActiveKey = btn.dataset.tgOrder || "";
+            renderTechChat();
+          });
+        });
+
+        const sel = $("techChatOrderSelect");
+        if (sel) {
+          sel.addEventListener("change", () => {
+            techChatActiveKey = sel.value || "";
+            renderTechChat();
+          });
+        }
+
+        const sendForm = $("techChatSendForm");
+        if (sendForm) {
+          sendForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const inp = $("techChatInput");
+            const txt = (inp && inp.value || "").trim();
+            if (!txt || !activeKey) return;
+            addChatMessage(activeKey, "tech", txt);
+            inp.value = "";
+            renderTechChat();
+          });
+        }
       }
 
       /* FORMULARIO CON NÚMERO DE INGRESO GENERADO + EDITABLE, SUGERENCIAS Y ESCÁNER DE SERIAL */
@@ -2472,28 +3604,255 @@
         showToast("Nube desconectada. Usando almacenamiento local.");
       });
 
-      // SINCRONIZACIÓN 100% AUTOMÁTICA EN TODOS LOS DISPOSITIVOS:
-      // 1) Al volver a enfocar la pestaña / app
       document.addEventListener("visibilitychange", () => {
         if (!document.hidden && loadCloudConfig().endpoint) {
           pullFromCloud(true);
         }
       });
-      // 2) Al recuperar conexión a internet
       window.addEventListener("online", () => {
         if (loadCloudConfig().endpoint) {
           if (hasPendingLocalPush) pushToCloud(true);
           else pullFromCloud(true);
         }
       });
-      // 3) Auto-actualización continua cada 15 segundos mientras la pestaña esté visible
       setInterval(() => {
         if (!document.hidden && navigator.onLine && loadCloudConfig().endpoint) {
           pullFromCloud(true);
         }
       }, 15000);
 
+      // --- PORTAL CLIENTES + ACCESO RESTRINGIDO A BASE TÉCNICA ---
+      const TECH_SESSION_KEY = "afd_bt_tech_auth_v1";
+      const TECH_USERS = {
+        "AFD": "AFD2026",
+        "afd": "AFD2026"
+      };
+
+      const clientPortalEl = $("clientPortalView");
+      const mainTechEl = document.querySelector("main#top");
+      const openTechLoginBtn = $("openTechLoginBtn");
+      const backToClientPortalBtn = $("backToClientPortalBtn");
+      const techLoginModal = $("techLoginModal");
+      const techLoginForm = $("techLoginForm");
+      const techUserInput = $("techUserInput");
+      const techPassInput = $("techPassInput");
+      const techLoginError = $("techLoginError");
+      const clientLookupForm = $("clientLookupForm");
+      const clientQueryInput = $("clientQueryInput");
+      const clientLookupModal = $("clientLookupModal");
+      const clientLookupResultsBody = $("clientLookupResultsBody");
+      const clientLookupModalSubtitle = $("clientLookupModalSubtitle");
+
+      let isTechAuthenticated = false;
+      try {
+        isTechAuthenticated = sessionStorage.getItem(TECH_SESSION_KEY) === "1";
+      } catch (_) {}
+
+      function applyRoleView(showTech) {
+        const allowTech = Boolean(showTech && isTechAuthenticated);
+        if (clientPortalEl) clientPortalEl.classList.toggle("hidden", allowTech);
+        if (mainTechEl) mainTechEl.classList.toggle("hidden", !allowTech);
+        if (openTechLoginBtn) openTechLoginBtn.classList.toggle("hidden", allowTech);
+        if (backToClientPortalBtn) backToClientPortalBtn.classList.toggle("hidden", !allowTech);
+        if (allowTech && typeof renderTechChat === "function") renderTechChat();
+      }
+
+      function openTechLogin() {
+        if (isTechAuthenticated) {
+          applyRoleView(true);
+          return;
+        }
+        techLoginError.textContent = "";
+        techLoginForm.reset();
+        techLoginModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => techUserInput && techUserInput.focus(), 40);
+      }
+
+      function closeTechLogin() {
+        techLoginModal.classList.add("hidden");
+        document.body.style.overflow = "";
+        techLoginError.textContent = "";
+      }
+
+      function logoutTech() {
+        isTechAuthenticated = false;
+        try { sessionStorage.removeItem(TECH_SESSION_KEY); } catch (_) {}
+        applyRoleView(false);
+        showToast("Sesión técnica cerrada. Volviste al portal principal.");
+      }
+
+      if (openTechLoginBtn) openTechLoginBtn.addEventListener("click", openTechLogin);
+      if (backToClientPortalBtn) backToClientPortalBtn.addEventListener("click", logoutTech);
+      $("closeTechLoginModalBtn").addEventListener("click", closeTechLogin);
+      $("cancelTechLoginBtn").addEventListener("click", closeTechLogin);
+      techLoginModal.addEventListener("click", (e) => {
+        if (e.target === techLoginModal) closeTechLogin();
+      });
+
+      techLoginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const u = (techUserInput.value || "").trim();
+        const p = techPassInput.value || "";
+        if (Object.prototype.hasOwnProperty.call(TECH_USERS, u) && TECH_USERS[u] === p) {
+          isTechAuthenticated = true;
+          try { sessionStorage.setItem(TECH_SESSION_KEY, "1"); } catch (_) {}
+          closeTechLogin();
+          applyRoleView(true);
+          render();
+          showToast("Acceso concedido a Base Técnica.");
+        } else {
+          techLoginError.textContent = "Usuario o clave incorrectos. Solo personal técnico autorizado.";
+        }
+      });
+
+      // Búsqueda estricta por datos del cliente o número de orden (no expone otros clientes)
+      function findClientMatches(rawQuery) {
+        const q = String(rawQuery || "").trim().toLocaleLowerCase("es");
+        if (!q) return [];
+        const qDigits = q.replace(/\D/g, "");
+
+        return records.filter((r) => {
+          const orderMatch = String(r.orderNumber || r.id || "").trim().toLocaleLowerCase("es") === q;
+          const clientMatch = String(r.client || "").trim().toLocaleLowerCase("es").includes(q);
+          const rutMatch = String(r.rut || "").trim().toLocaleLowerCase("es").includes(q)
+            || (qDigits.length >= 6 && String(r.rut || "").replace(/\D/g, "").includes(qDigits));
+          const phoneMatch = qDigits.length >= 7 && String(r.phone || "").replace(/\D/g, "").includes(qDigits);
+          return orderMatch || clientMatch || rutMatch || phoneMatch;
+        });
+      }
+
+      function bindClientChatForms() {
+        clientLookupResultsBody.querySelectorAll("form[data-client-chat-order]").forEach((form) => {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const orderKey = form.dataset.clientChatOrder;
+            const input = form.querySelector("input");
+            const txt = (input && input.value || "").trim();
+            if (!orderKey || !txt) return;
+            addChatMessage(orderKey, "client", txt);
+            input.value = "";
+            const listEl = clientLookupResultsBody.querySelector(`[data-client-chat-list="${CSS.escape(orderKey)}"]`);
+            if (listEl) {
+              listEl.innerHTML = renderMessagesListHtml(orderKey);
+              listEl.scrollTop = listEl.scrollHeight;
+            }
+            if (isTechAuthenticated && typeof renderTechChat === "function") {
+              renderTechChat();
+            }
+          });
+        });
+      }
+
+      function openClientLookupModal(rawQuery) {
+        const matches = findClientMatches(rawQuery);
+        clientLookupModalSubtitle.textContent = `Consulta para: "${rawQuery.trim()}"`;
+
+        if (!matches.length) {
+          clientLookupResultsBody.innerHTML = `
+            <div class="empty-state" style="padding:28px 12px">
+              <strong>No encontramos órdenes con ese dato</strong>
+              <span>Verifica tu nombre completo, número de celular, cédula/RUC o número de orden e inténtalo de nuevo.</span>
+            </div>`;
+        } else {
+          clientLookupResultsBody.innerHTML = matches.map((r) => {
+            const orderKey = String(r.orderNumber || r.id || "");
+            const printerOrEq = r.equipment || [r.brand, r.model].filter(Boolean).join(" / ") || "Equipo / Impresora";
+            const statusDesc = r.service || r.diagnosis || "En revisión técnica";
+            const totalNum = Number(r.cost) || 0;
+            const abonoNum = Number(r.abono) || 0;
+            const restaVal = r.resta !== "" && r.resta != null && Number.isFinite(Number(r.resta))
+              ? formatMoneyPlain(r.resta)
+              : Math.max(0, totalNum - abonoNum).toFixed(2);
+            const compactStamp = formatCompactDateTime(r.date, r.time);
+
+            return `
+              <article class="client-result-card">
+                <div class="client-result-top">
+                  <div>
+                    <span class="id-text">ORDEN Nro. ${escapeHtml(orderKey)}</span>
+                    <div class="client-name" style="font-size:14px;margin-top:2px">${escapeHtml(r.client || "Cliente")}</div>
+                  </div>
+                  <span class="status ${statusClass(r.status)}">${escapeHtml(r.status || "Pendiente")}</span>
+                </div>
+                <div class="view-details">
+                  <div class="detail">
+                    <span class="detail-label">Estado de tu impresora / equipo</span>
+                    <span class="detail-value"><strong>${escapeHtml(r.status || "Pendiente")}</strong> · ${escapeHtml(printerOrEq)}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="detail-label">Fecha de ingreso</span>
+                    <span class="detail-value" style="font-family:var(--font-mono);font-size:12px">${escapeHtml(compactStamp)}</span>
+                  </div>
+                  <div class="detail wide">
+                    <span class="detail-label">Detalle / Diagnóstico de tu equipo</span>
+                    <span class="detail-value">${escapeHtml(statusDesc)}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="detail-label">Total / Abono</span>
+                    <span class="detail-value">Total: $${formatMoneyPlain(r.cost)} · Abono: $${formatMoneyPlain(r.abono)}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="detail-label">Saldo pendiente (Resta)</span>
+                    <span class="detail-value"><strong>$${escapeHtml(restaVal)}</strong></span>
+                  </div>
+                </div>
+
+                <div class="chat-box">
+                  <div class="chat-header">
+                    <span>Chat con el Técnico · Orden ${escapeHtml(orderKey)}</span>
+                  </div>
+                  <div class="chat-messages" data-client-chat-list="${escapeHtml(orderKey)}">
+                    ${renderMessagesListHtml(orderKey)}
+                  </div>
+                  <form class="chat-form" data-client-chat-order="${escapeHtml(orderKey)}">
+                    <input class="chat-input" type="text" required placeholder="Escribe un mensaje al técnico...">
+                    <button type="submit" class="btn btn-primary btn-small">Enviar</button>
+                  </form>
+                </div>
+              </article>`;
+          }).join("");
+
+          bindClientChatForms();
+          clientLookupResultsBody.querySelectorAll("[data-client-chat-list]").forEach((el) => {
+            el.scrollTop = el.scrollHeight;
+          });
+        }
+
+        clientLookupModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeClientLookupModal() {
+        clientLookupModal.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      if (clientLookupForm) {
+        clientLookupForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          openClientLookupModal(clientQueryInput.value);
+        });
+      }
+      $("closeClientLookupModalBtn").addEventListener("click", closeClientLookupModal);
+      $("doneClientLookupBtn").addEventListener("click", closeClientLookupModal);
+      clientLookupModal.addEventListener("click", (e) => {
+        if (e.target === clientLookupModal) closeClientLookupModal();
+      });
+
+      const brandHomeLink = $("brandHomeLink");
+      if (brandHomeLink) {
+        brandHomeLink.addEventListener("click", (e) => {
+          if (!isTechAuthenticated) {
+            e.preventDefault();
+            applyRoleView(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        });
+      }
+
       render();
+      applyRoleView(isTechAuthenticated);
       if (loadCloudConfig().endpoint) {
         setCloudUiState("syncing");
         pullFromCloud(true);
@@ -2501,6 +3860,6 @@
         setCloudUiState("off");
       }
     })();
-  </script>
+</script>
 </body>
 </html>
