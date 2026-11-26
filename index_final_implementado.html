@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#36A9E1">
+  <title>BT Base Técnica · AFDSISTEMAS</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='52.31 21.08 208.3 94.53'%3E%3Cpath fill='%2336A9E1' d='M 91.16 59.94 L 74.08 103.82 C 73.82 104.5 73.35 105.07 72.74 105.47 C 69.92 107.32 61.41 112.3 54.98 109.88 C 53.16 109.2 52.31 107.11 53.06 105.31 L 81.52 36.79 C 82.99 34.29 91.83 21.08 105.52 33.03 L 132.02 92 C 133.57 95.23 135.08 97.67 135.08 97.67 C 136.2 99.49 135.41 101.87 133.45 102.71 C 129.82 104.25 123.7 105.5 115.28 102.52 L 97.65 59.96 C 96.52 56.98 92.31 56.97 91.16 59.94 Z'/%3E%3Cpath fill='%2395C11F' d='M 170.17 57.94 C 172.7 52.1 177.5 49.93 186.91 49.93 L 193.19 49.93 C 217.59 51.21 218.82 31.08 218.82 31.08 L 165.07 32.36 C 156.15 35.6 153.93 39.94 151.05 51.49 L 140.53 96.01 C 134.3 112.2 118.32 106.5 114.62 104.95 C 118.94 110.68 153.59 115.61 161.18 97.35 Z M 209.58 61.55 C 207.1 79.11 189.95 79.54 173.02 79.94 C 169.43 68.55 179.95 61.55 179.95 61.55 Z'/%3E%3Cpath fill='%2336A9E1' d='M 241.39 35.28 C 254.05 41.75 260.61 54.4 260.61 71.81 C 260.61 95.3 246.5 111.81 223.97 111.81 L 187.5 111.81 C 188.68 92.53 212.05 93.76 218.06 93.76 C 230.2 93.76 235.95 86.2 235.95 72.3 C 235.95 58.12 229.8 50.35 218.17 50.35 L 212.05 50.35 C 220.88 32.36 227.4 32.36 227.4 32.36 Z M 93.8 72.08 C 77.7 94.6 94.59 95.8 94.59 95.8 C 113.14 92.04 93.8 72.08 93.8 72.08 Z'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --font-brand: "Montserrat", "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --font-sans: "Plus Jakarta Sans", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --transition: 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+
+      /* Colores corporativos oficiales AFD SISTEMAS-EC */
+      --afd-blue: #36A9E1;
+      --afd-blue-deep: #1875A8;
+      --afd-green: #95C11F;
+      --afd-green-deep: #6A8E0E;
+      --afd-dark: #231F20;
+      --whatsapp: #25D366;
+      --whatsapp-dark: #128C7E;
+      --danger: #E13B3B;
+    }
+
+    /* TEMA CLARO: Degradado Azul (#36A9E1) arriba -> Verde (#95C11F) abajo */
+    [data-theme="light"] {
+      color-scheme: light;
+      --bg-gradient: linear-gradient(180deg, #36A9E1 0%, #56B58E 48%, #95C11F 100%);
+      --bg-overlay: rgba(255, 255, 255, 0.14);
+      --surface-1: rgba(255, 255, 255, 0.92);
+      --surface-2: rgba(255, 255, 255, 0.98);
+      --surface-3: rgba(242, 249, 246, 0.92);
+      --surface-hover: rgba(54, 169, 225, 0.08);
+      --topbar-bg: rgba(16, 36, 48, 0.82);
+      --ink: #182B33;
+      --ink-strong: #0B1920;
+      --muted: #4F6B75;
+      --line: rgba(24, 43, 51, 0.12);
+      --line-strong: rgba(24, 43, 51, 0.24);
+      --input-bg: #FFFFFF;
+      --logo-blue: #36A9E1;
+      --logo-green: #95C11F;
+      --logo-text: #231F20;
+      --shadow-card: 0 16px 40px rgba(11, 25, 32, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      --badge-pend-bg: #FEF3C7;
+      --badge-pend-fg: #9A5B00;
+      --badge-proc-bg: #E0F3FC;
+      --badge-proc-fg: #0F6A96;
+      --badge-comp-bg: #ECF8D2;
+      --badge-comp-fg: #4F6D06;
+    }
+
+    /* TEMA OSCURO FUTURISTA: Degradado Azul profundo arriba -> Verde tecnológico abajo */
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg-gradient: linear-gradient(180deg, #0A2E47 0%, #0C3833 50%, #17360D 100%);
+      --bg-overlay: radial-gradient(circle at 50% 0%, rgba(54, 169, 225, 0.24), transparent 55%),
+                    radial-gradient(circle at 50% 100%, rgba(149, 193, 31, 0.20), transparent 55%);
+      --surface-1: rgba(11, 24, 32, 0.84);
+      --surface-2: rgba(16, 34, 45, 0.94);
+      --surface-3: rgba(20, 42, 46, 0.92);
+      --surface-hover: rgba(54, 169, 225, 0.12);
+      --topbar-bg: rgba(7, 18, 26, 0.88);
+      --ink: #EAF6FA;
+      --ink-strong: #FFFFFF;
+      --muted: #98B8C4;
+      --line: rgba(54, 169, 225, 0.22);
+      --line-strong: rgba(149, 193, 31, 0.42);
+      --input-bg: rgba(8, 19, 27, 0.88);
+      --logo-blue: #4CC0F8;
+      --logo-green: #AEE02A;
+      --logo-text: #FFFFFF;
+      --shadow-card: 0 18px 46px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      --badge-pend-bg: rgba(245, 158, 11, 0.18);
+      --badge-pend-fg: #FCD34D;
+      --badge-proc-bg: rgba(54, 169, 225, 0.20);
+      --badge-proc-fg: #7DD3FC;
+      --badge-comp-bg: rgba(149, 193, 31, 0.20);
+      --badge-comp-fg: #BEF264;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: var(--bg-gradient) fixed;
+      color: var(--ink);
+      font: 14px/1.5 var(--font-sans);
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: var(--bg-overlay);
+      z-index: 0;
+    }
+
+    .topbar, main, .modal-backdrop, .toast {
+      position: relative;
+      z-index: 1;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--afd-blue);
+      outline-offset: 2px;
+    }
+
+    /* LOGO OFICIAL AFD SISTEMAS-EC */
+    .afd-brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .afd-logo-svg {
+      height: 44px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+    }
+    .afd-logo-svg .afd-blue { fill: var(--logo-blue); transition: fill var(--transition); }
+    .afd-logo-svg .afd-green { fill: var(--logo-green); transition: fill var(--transition); }
+
+    .afd-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+      font-family: var(--font-brand);
+    }
+    .afd-wordmark-main {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+    }
+    .afd-wordmark-sub {
+      margin-top: 3px;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #D9F6FF;
+      text-transform: uppercase;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px max(24px, calc((100vw - 1420px) / 2));
+      background: var(--topbar-bg);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .topbar-site-pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
+      color: #E6F8FF;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .topbar-site-pill:hover {
+      border-color: var(--afd-green);
+      background: rgba(149, 193, 31, 0.22);
+      color: #FFFFFF;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .workspace-badge {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    /* AJUSTES DE TEMA */
+    .settings-wrap { position: relative; }
+    .settings-btn {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.10);
+      color: #FFFFFF;
+      transition: var(--transition);
+    }
+    .settings-btn:hover {
+      border-color: var(--afd-green);
+      background: rgba(149, 193, 31, 0.25);
+      transform: rotate(25deg);
+    }
+    .settings-btn svg { width: 18px; height: 18px; }
+
+    .settings-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 248px;
+      padding: 14px;
+      border-radius: 15px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-2);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+      color: var(--ink);
+      z-index: 50;
+    }
+    .settings-popover-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      font-size: 10.5px;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .theme-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .theme-choice {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 8px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: var(--surface-3);
+      color: var(--ink);
+      font-size: 11.5px;
+      font-weight: 800;
+      transition: var(--transition);
+    }
+    .theme-choice.active {
+      border-color: var(--afd-blue);
+      background: rgba(54, 169, 225, 0.16);
+      color: var(--ink-strong);
+      box-shadow: inset 0 0 0 1px var(--afd-blue);
+    }
+    .settings-help {
+      margin: 10px 0 0;
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .bt-chip {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--afd-blue), var(--afd-green));
+      color: #FFFFFF;
+      font-family: var(--font-brand);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    main {
+      max-width: 1420px;
+      margin: 0 auto;
+      padding: 26px 24px 48px;
+    }
+
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(11, 25, 32, 0.42);
+      backdrop-filter: blur(8px);
+      color: #EBF8FF;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+    }
+    .breadcrumb strong { color: #C9F24B; }
+
+    .page-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin: 16px 0 24px;
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface-1);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-card);
+    }
+    .page-heading-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .page-logo-box {
+      padding: 8px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page-logo-caption {
+      margin-top: 4px;
+      font-family: var(--font-brand);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: var(--logo-text);
+    }
+    h1 {
+      margin: 0;
+      font-family: var(--font-brand);
+      color: var(--ink-strong);
+      font-size: clamp(22px, 2.8vw, 31px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .version-pill {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--afd-blue);
+      background: rgba(54, 169, 225, 0.14);
+      color: var(--ink-strong);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* PANEL DE SERVICIO (KPIs) */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(11, 25, 32, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+      font-family: var(--font-brand);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .section-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--afd-blue), var(--afd-green));
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 26px;
+    }
+    .stat-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 104px;
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface-1);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--afd-blue);
+    }
+    .stat-icon {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      font-size: 19px;
+      font-weight: 850;
+    }
+    .stat-icon.total { background: rgba(54, 169, 225, 0.16); color: var(--afd-blue-deep); }
+    [data-theme="dark"] .stat-icon.total { color: #67C8F7; }
+    .stat-icon.pending { background: var(--badge-pend-bg); color: var(--badge-pend-fg); }
+    .stat-icon.progress { background: var(--badge-proc-bg); color: var(--badge-proc-fg); }
+    .stat-icon.done { background: var(--badge-comp-bg); color: var(--badge-comp-fg); }
+
+    .stat-value {
+      display: block;
+      font-family: var(--font-mono);
+      color: var(--ink-strong);
+      font-size: 27px;
+      font-weight: 850;
+      line-height: 1;
+    }
+    .stat-title { display: block; margin-top: 6px; font-weight: 800; font-size: 12.5px; color: var(--ink-strong); }
+    .stat-caption { display: block; margin-top: 2px; font-size: 11px; color: var(--muted); }
+
+    /* TARJETA PRINCIPAL DE REGISTROS */
+    .records-card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface-1);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+    }
+    .records-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .records-header h2 {
+      margin: 0;
+      font-family: var(--font-brand);
+      color: var(--ink-strong);
+      font-size: 18px;
+      font-weight: 850;
+    }
+    .records-header p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .header-actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+
+    .btn {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--afd-blue-deep), var(--afd-green-deep));
+      color: #FFFFFF;
+      box-shadow: 0 6px 16px rgba(24, 117, 168, 0.25);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--afd-blue), var(--afd-green));
+    }
+    .btn-secondary {
+      background: var(--surface-2);
+      border-color: var(--line-strong);
+      color: var(--ink-strong);
+    }
+    .btn-secondary:hover {
+      border-color: var(--afd-blue);
+      background: var(--surface-3);
+    }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+      color: #FFFFFF;
+      box-shadow: 0 5px 14px rgba(37, 211, 102, 0.28);
+    }
+    .btn-small { min-height: 32px; padding: 5px 10px; font-size: 11px; border-radius: 8px; }
+
+    /* ESTADO AUTOMÁTICO BOTÓN NUBE */
+    .cloud-btn {
+      position: relative;
+      gap: 8px;
+    }
+    .cloud-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #94A3B8;
+      flex: 0 0 8px;
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .cloud-btn.is-online .cloud-dot {
+      background: #22C55E;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.24);
+    }
+    .cloud-btn.is-syncing .cloud-dot {
+      background: #36A9E1;
+      animation: cloudPulse 1s infinite ease-in-out;
+    }
+    .cloud-btn.is-error .cloud-dot {
+      background: #F59E0B;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+    }
+    @keyframes cloudPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.45; }
+    }
+
+    /* FILTROS */
+    .filters {
+      display: grid;
+      grid-template-columns: minmax(190px, 1.5fr) repeat(4, minmax(115px, 1fr)) auto;
+      gap: 10px;
+      align-items: end;
+      padding: 15px 22px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-3);
+    }
+    .field { min-width: 0; position: relative; }
+    .field label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .control {
+      width: 100%;
+      height: 38px;
+      padding: 8px 11px;
+      border-radius: 9px;
+      border: 1px solid var(--line-strong);
+      background: var(--input-bg);
+      color: var(--ink-strong);
+      font-size: 12px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .control:focus {
+      border-color: var(--afd-blue);
+      box-shadow: 0 0 0 3px rgba(54, 169, 225, 0.18);
+      outline: none;
+    }
+    .search-wrap { position: relative; }
+    .search-wrap .control { padding-left: 32px; }
+    .search-icon { position: absolute; top: 9px; left: 10px; color: var(--muted); pointer-events: none; }
+    .filter-actions { display: flex; gap: 7px; }
+
+    /* BARRA DE VISTA */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .result-count { font-size: 12px; color: var(--muted); }
+    .result-count strong { color: var(--ink-strong); }
+    .view-switch {
+      display: flex;
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-3);
+    }
+    .view-btn {
+      padding: 6px 11px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      transition: var(--transition);
+    }
+    .view-btn.active {
+      background: linear-gradient(135deg, var(--afd-blue), var(--afd-green));
+      color: #FFFFFF;
+    }
+
+    /* TABLA */
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    thead { background: var(--surface-3); }
+    th {
+      padding: 11px 13px;
+      color: var(--muted);
+      font-size: 9.5px;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    td {
+      padding: 12px 13px;
+      border-top: 1px solid var(--line);
+      font-size: 11.5px;
+      vertical-align: middle;
+    }
+    tbody tr:hover { background: var(--surface-hover); }
+
+    .id-text {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--afd-blue-deep);
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .id-text { color: #67C8F7; }
+    .date-text { font-family: var(--font-mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .client-name { font-weight: 800; color: var(--ink-strong); display: block; }
+    .subtext {
+      display: block;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 10.5px;
+    }
+    .diagnosis-text { max-width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .status-pendiente { background: var(--badge-pend-bg); color: var(--badge-pend-fg); }
+    .status-proceso { background: var(--badge-proc-bg); color: var(--badge-proc-fg); }
+    .status-completado { background: var(--badge-comp-bg); color: var(--badge-comp-fg); }
+
+    .cost { font-family: var(--font-mono); font-weight: 800; color: var(--ink-strong); white-space: nowrap; }
+    .row-actions { display: flex; gap: 5px; }
+    .icon-btn {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-2);
+      color: var(--ink);
+      font-size: 13px;
+      transition: var(--transition);
+    }
+    .icon-btn:hover { border-color: var(--afd-blue); color: var(--afd-blue); transform: translateY(-1px); }
+    .icon-btn.wa:hover { border-color: var(--whatsapp); background: var(--whatsapp); color: #FFFFFF; }
+    .icon-btn.delete:hover { border-color: var(--danger); background: rgba(225, 59, 59, 0.14); color: var(--danger); }
+    .icon-btn svg { width: 15px; height: 15px; }
+
+    /* BOTONES SEMAFORO CON CARITAS PARA AVISO WHATSAPP */
+    .semaforo-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 5px;
+    }
+    .semaforo-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      line-height: 1;
+      padding: 0;
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+    }
+    .semaforo-btn:hover {
+      transform: scale(1.15);
+      filter: brightness(1.06);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+    }
+    .semaforo-btn.ready {
+      background: #22C55E;
+      color: #FFFFFF;
+    }
+    .semaforo-btn.wait-time {
+      background: #F59E0B;
+      color: #1F1600;
+    }
+    .semaforo-btn.wait-long {
+      background: #EF4444;
+      color: #FFFFFF;
+    }
+
+    /* TARJETAS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 18px 22px 22px;
+    }
+    .record-card {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-2);
+    }
+    .record-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .record-card h3 { margin: 6px 0 2px; font-size: 14px; color: var(--ink-strong); }
+    .record-card .equipment { margin: 0; font-size: 11.5px; color: var(--muted); }
+    .card-diagnosis { margin: 12px 0; font-size: 12px; color: var(--ink); }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .empty-state { padding: 52px 20px; text-align: center; color: var(--muted); }
+    .empty-state strong { display: block; margin-bottom: 4px; color: var(--ink-strong); font-size: 15px; }
+    .hidden { display: none !important; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 22px;
+      border-top: 1px solid var(--line);
+      background: var(--surface-3);
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .save-status { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; color: var(--afd-green-deep); }
+    [data-theme="dark"] .save-status { color: var(--logo-green); }
+    .save-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--afd-green); }
+
+    /* MODALES */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(6, 18, 26, 0.68);
+      backdrop-filter: blur(6px);
+    }
+    .modal {
+      width: min(720px, 100%);
+      max-height: min(92vh, 840px);
+      overflow: auto;
+      border-radius: 18px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-2);
+      color: var(--ink);
+      box-shadow: 0 26px 75px rgba(0, 0, 0, 0.45);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-header h2 { margin: 0; font-family: var(--font-brand); font-size: 18px; color: var(--ink-strong); }
+    .modal-header p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+    .close-btn {
+      width: 33px;
+      height: 33px;
+      border-radius: 9px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-3);
+      color: var(--ink);
+      font-size: 18px;
+    }
+    .modal-body { padding: 18px 22px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+    .form-grid .wide { grid-column: 1 / -1; }
+    .form-grid textarea.control { min-height: 74px; height: auto; resize: vertical; }
+
+    /* INPUT CON BOTÓN DE ESCÁNER DE CÓDIGO DE BARRAS / SERIAL */
+    .input-with-btn {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .input-with-btn .control { flex: 1; }
+    .scan-trigger-btn {
+      height: 38px;
+      padding: 0 11px;
+      border-radius: 9px;
+      border: 1px solid var(--afd-blue);
+      background: rgba(54, 169, 225, 0.14);
+      color: var(--ink-strong);
+      font-size: 11.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .scan-trigger-btn:hover {
+      background: var(--afd-blue);
+      color: #FFFFFF;
+    }
+
+    /* CHIPS DE SUGERENCIAS RÁPIDAS BAJO CAMPOS */
+    .suggestion-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+    .chip-btn {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface-3);
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    .chip-btn:hover {
+      border-color: var(--afd-blue);
+      color: var(--ink-strong);
+      background: rgba(54, 169, 225, 0.12);
+    }
+
+    /* ESCÁNER DE CÓDIGO DE BARRAS */
+    .scanner-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--afd-blue);
+      background: var(--surface-3);
+    }
+    .scanner-video {
+      width: 100%;
+      max-height: 230px;
+      border-radius: 9px;
+      background: #06121A;
+      object-fit: cover;
+    }
+    .scanner-status {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .view-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .detail {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface-3);
+    }
+    .detail.wide { grid-column: 1 / -1; }
+    .detail-label {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .detail-value { color: var(--ink-strong); font-size: 12.5px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+    .wa-preview {
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      background: var(--surface-3);
+      color: var(--ink-strong);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow: auto;
+    }
+
+    .modal-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 9px;
+      padding: 14px 22px;
+      border-top: 1px solid var(--line);
+      background: var(--surface-3);
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 60;
+      right: 22px;
+      bottom: 22px;
+      max-width: calc(100vw - 44px);
+      padding: 11px 16px;
+      border-radius: 11px;
+      background: #0D222D;
+      border: 1px solid var(--afd-blue);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 750;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (max-width: 1000px) {
+      .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px) {
+      .topbar { padding: 12px 14px; }
+      .topbar-site-pill, .workspace-badge { display: none; }
+      .afd-logo-svg { height: 36px; }
+      .afd-wordmark-main { font-size: 13.5px; }
+      main { padding: 18px 12px 32px; }
+      .page-heading { flex-direction: column; align-items: flex-start; padding: 16px; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .records-header { flex-direction: column; align-items: flex-start; }
+      .filters { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .form-grid, .view-details { grid-template-columns: 1fr; }
+      .form-grid .wide, .detail.wide { grid-column: auto; }
+      .footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="afd-brand-lockup" href="#top">
+        <svg class="afd-logo-svg" viewBox="52.31 21.08 208.3 94.53" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo AFD Sistemas-EC">
+  <path class="afd-blue" d="M 91.160156 59.941406 L 74.082031 103.816406 C 73.820312 104.496094 73.351562 105.070312 72.742188 105.46875 C 69.921875 107.316406 61.410156 112.300781 54.976562 109.882812 C 53.160156 109.203125 52.3125 107.105469 53.058594 105.3125 L 81.519531 36.785156 C 81.589844 36.617188 81.667969 36.460938 81.761719 36.308594 C 82.992188 34.292969 91.828125 21.082031 105.523438 33.027344 C 105.902344 33.355469 106.199219 33.773438 106.402344 34.226562 L 132.015625 92.003906 C 132.015625 92.003906 133.570312 95.226562 135.078125 97.671875 C 136.203125 99.492188 135.414062 101.867188 133.445312 102.707031 C 129.816406 104.253906 123.699219 105.496094 115.277344 102.523438 C 114.308594 102.183594 113.535156 101.433594 113.167969 100.476562 L 97.652344 59.957031 C 96.515625 56.984375 92.3125 56.972656 91.160156 59.941406 "/>
+  <path class="afd-blue" d="M 241.394531 35.28125 C 241.882812 35.535156 242.390625 35.734375 242.875 35.980469 C 246.640625 37.878906 249.808594 40.449219 252.367188 43.683594 C 255.257812 47.332031 257.355469 51.578125 258.65625 56.417969 C 259.957031 61.261719 260.605469 66.390625 260.605469 71.8125 C 260.605469 80.300781 259.640625 86.886719 257.707031 91.566406 C 255.773438 96.246094 253.089844 100.164062 249.660156 103.328125 C 246.226562 106.488281 242.539062 108.59375 238.601562 109.640625 C 233.21875 111.085938 228.339844 111.808594 223.96875 111.808594 L 187.496094 111.808594 C 187.496094 111.808594 188.675781 92.53125 212.046875 93.761719 L 218.0625 93.761719 C 223.191406 93.761719 226.84375 93.191406 229.011719 92.054688 C 231.175781 90.914062 232.875 88.929688 234.105469 86.089844 C 235.332031 83.253906 235.945312 78.660156 235.945312 72.296875 C 235.945312 63.878906 234.574219 58.117188 231.828125 55.011719 C 229.082031 51.902344 224.53125 50.347656 218.171875 50.347656 L 212.046875 50.347656 C 212.046875 50.347656 220.882812 32.363281 227.398438 32.355469 C 227.398438 32.355469 238.082031 33.566406 241.394531 35.28125 "/>
+  <path class="afd-green" d="M 170.167969 57.9375 C 171.453125 54.972656 173.222656 52.898438 175.484375 51.710938 C 177.75 50.523438 181.558594 49.929688 186.914062 49.929688 L 193.191406 49.929688 C 217.589844 51.210938 218.820312 31.082031 218.820312 31.082031 L 180.746094 31.082031 C 176.183594 31.082031 170.6875 30.84375 165.066406 32.355469 C 160.957031 33.449219 156.148438 35.601562 153.929688 39.941406 C 152.542969 42.652344 151.054688 51.492188 151.054688 51.492188 L 140.527344 96.011719 C 134.296875 112.199219 118.316406 106.496094 115.164062 105.183594 C 114.808594 105.035156 114.617188 104.945312 114.617188 104.945312 C 114.617188 104.945312 118.941406 110.675781 127.335938 110.675781 C 127.335938 110.675781 153.585938 115.609375 161.183594 97.347656 Z M 170.167969 57.9375 "/>
+  <path class="afd-green" d="M 209.578125 61.550781 C 209.578125 61.550781 207.101562 79.109375 189.953125 79.542969 L 173.023438 79.941406 C 173.023438 79.941406 169.425781 68.554688 179.949219 61.550781 Z M 209.578125 61.550781 "/>
+  <path class="afd-blue" d="M 93.796875 72.082031 C 93.796875 72.082031 77.695312 94.601562 94.585938 95.796875 C 94.585938 95.796875 113.144531 92.042969 93.796875 72.082031 "/>
+</svg>
+        <div class="afd-wordmark">
+          <span class="afd-wordmark-main">AFDSISTEMAS</span>
+          <span class="afd-wordmark-sub">LO MEJOR EN TECNOLOGÍA</span>
+        </div>
+      </a>
+      <a class="topbar-site-pill" href="https://www.afdsistemas.com" target="_blank" rel="noopener noreferrer">www.afdsistemas.com</a>
+    </div>
+
+    <div class="topbar-right">
+      <span class="workspace-badge">ESPACIO DE TRABAJO</span>
+
+      <!-- ICONO DE AJUSTES PARA CAMBIAR ENTRE TEMA CLARO Y OSCURO -->
+      <div class="settings-wrap">
+        <button type="button" class="settings-btn" id="settingsBtn" aria-label="Ajustes de tema" aria-expanded="false" title="Ajustes de tema">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <div class="settings-popover hidden" id="settingsPopover" role="dialog" aria-label="Ajustes de tema">
+          <div class="settings-popover-head">
+            <span>Ajustes de tema</span>
+            <span>PANTONE</span>
+          </div>
+          <div class="theme-grid">
+            <button type="button" class="theme-choice active" id="themeLightBtn" data-set-theme="light">
+              <span>☀</span>
+              <span>Claro</span>
+            </button>
+            <button type="button" class="theme-choice" id="themeDarkBtn" data-set-theme="dark">
+              <span>☾</span>
+              <span>Oscuro</span>
+            </button>
+          </div>
+          <p class="settings-help">Degradado azul (#36A9E1) arriba a verde (#95C11F) abajo. Se guarda automáticamente.</p>
+        </div>
+      </div>
+
+      <span class="bt-chip" aria-label="Base Técnica">BT</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="breadcrumb-row">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <span>OPERACIONES</span><span aria-hidden="true">/</span><strong>REGISTROS</strong>
+      </nav>
+    </div>
+
+    <div class="page-heading">
+      <div class="page-heading-brand">
+        <div class="page-logo-box">
+          <svg class="afd-logo-svg" viewBox="52.31 21.08 208.3 94.53" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo AFD Sistemas-EC">
+  <path class="afd-blue" d="M 91.160156 59.941406 L 74.082031 103.816406 C 73.820312 104.496094 73.351562 105.070312 72.742188 105.46875 C 69.921875 107.316406 61.410156 112.300781 54.976562 109.882812 C 53.160156 109.203125 52.3125 107.105469 53.058594 105.3125 L 81.519531 36.785156 C 81.589844 36.617188 81.667969 36.460938 81.761719 36.308594 C 82.992188 34.292969 91.828125 21.082031 105.523438 33.027344 C 105.902344 33.355469 106.199219 33.773438 106.402344 34.226562 L 132.015625 92.003906 C 132.015625 92.003906 133.570312 95.226562 135.078125 97.671875 C 136.203125 99.492188 135.414062 101.867188 133.445312 102.707031 C 129.816406 104.253906 123.699219 105.496094 115.277344 102.523438 C 114.308594 102.183594 113.535156 101.433594 113.167969 100.476562 L 97.652344 59.957031 C 96.515625 56.984375 92.3125 56.972656 91.160156 59.941406 "/>
+  <path class="afd-blue" d="M 241.394531 35.28125 C 241.882812 35.535156 242.390625 35.734375 242.875 35.980469 C 246.640625 37.878906 249.808594 40.449219 252.367188 43.683594 C 255.257812 47.332031 257.355469 51.578125 258.65625 56.417969 C 259.957031 61.261719 260.605469 66.390625 260.605469 71.8125 C 260.605469 80.300781 259.640625 86.886719 257.707031 91.566406 C 255.773438 96.246094 253.089844 100.164062 249.660156 103.328125 C 246.226562 106.488281 242.539062 108.59375 238.601562 109.640625 C 233.21875 111.085938 228.339844 111.808594 223.96875 111.808594 L 187.496094 111.808594 C 187.496094 111.808594 188.675781 92.53125 212.046875 93.761719 L 218.0625 93.761719 C 223.191406 93.761719 226.84375 93.191406 229.011719 92.054688 C 231.175781 90.914062 232.875 88.929688 234.105469 86.089844 C 235.332031 83.253906 235.945312 78.660156 235.945312 72.296875 C 235.945312 63.878906 234.574219 58.117188 231.828125 55.011719 C 229.082031 51.902344 224.53125 50.347656 218.171875 50.347656 L 212.046875 50.347656 C 212.046875 50.347656 220.882812 32.363281 227.398438 32.355469 C 227.398438 32.355469 238.082031 33.566406 241.394531 35.28125 "/>
+  <path class="afd-green" d="M 170.167969 57.9375 C 171.453125 54.972656 173.222656 52.898438 175.484375 51.710938 C 177.75 50.523438 181.558594 49.929688 186.914062 49.929688 L 193.191406 49.929688 C 217.589844 51.210938 218.820312 31.082031 218.820312 31.082031 L 180.746094 31.082031 C 176.183594 31.082031 170.6875 30.84375 165.066406 32.355469 C 160.957031 33.449219 156.148438 35.601562 153.929688 39.941406 C 152.542969 42.652344 151.054688 51.492188 151.054688 51.492188 L 140.527344 96.011719 C 134.296875 112.199219 118.316406 106.496094 115.164062 105.183594 C 114.808594 105.035156 114.617188 104.945312 114.617188 104.945312 C 114.617188 104.945312 118.941406 110.675781 127.335938 110.675781 C 127.335938 110.675781 153.585938 115.609375 161.183594 97.347656 Z M 170.167969 57.9375 "/>
+  <path class="afd-green" d="M 209.578125 61.550781 C 209.578125 61.550781 207.101562 79.109375 189.953125 79.542969 L 173.023438 79.941406 C 173.023438 79.941406 169.425781 68.554688 179.949219 61.550781 Z M 209.578125 61.550781 "/>
+  <path class="afd-blue" d="M 93.796875 72.082031 C 93.796875 72.082031 77.695312 94.601562 94.585938 95.796875 C 94.585938 95.796875 113.144531 92.042969 93.796875 72.082031 "/>
+</svg>
+          <span class="page-logo-caption">SISTEMAS-EC</span>
+        </div>
+        <div>
+          <h1>BT Base Técnica</h1>
+          <p class="subtitle">AV. MALDONADO S34-289 Y DIEGO GUTIERREZ FRENTE A LA FABRICA PLYWOOD · 022733872 - 0992835549</p>
+        </div>
+      </div>
+      <span class="version-pill">Base de datos 1.0 · Drive Auto-Sync</span>
+    </div>
+
+    <section aria-labelledby="summary-heading">
+      <h2 class="section-label" id="summary-heading">Panel de servicio</h2>
+      <div class="stats">
+        <article class="stat-card">
+          <div class="stat-icon total" aria-hidden="true">▤</div>
+          <div><span class="stat-value" id="totalCount">0</span><span class="stat-title">Total de registros</span><span class="stat-caption">Registros en el sistema</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon pending" aria-hidden="true">◷</div>
+          <div><span class="stat-value" id="pendingCount">0</span><span class="stat-title">Pendientes</span><span class="stat-caption">Esperan atención</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon progress" aria-hidden="true">⚙</div>
+          <div><span class="stat-value" id="progressCount">0</span><span class="stat-title">En proceso</span><span class="stat-caption">Actualmente en taller</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon done" aria-hidden="true">✓</div>
+          <div><span class="stat-value" id="doneCount">0</span><span class="stat-title">Completados</span><span class="stat-caption">Listos o entregados</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="records-card" aria-labelledby="records-heading">
+      <div class="records-header">
+        <div>
+          <h2 id="records-heading">Registros de servicio</h2>
+          <p>Consulta, filtra y administra las órdenes del taller.</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-secondary cloud-btn" id="cloudSyncBtn" title="Sincronización automática con Google Drive (afdsistemas.base.datos@gmail.com). Haz clic para ver estado o configurar URL.">
+            <span class="cloud-dot" aria-hidden="true"></span>
+            <span id="cloudBtnLabel">☁ Nube Auto</span>
+          </button>
+          <button type="button" class="btn btn-secondary" id="exportBtn" title="Exportar los registros filtrados a CSV">⇩ Exportar CSV</button>
+          <button type="button" class="btn btn-primary" id="newBtn">＋ Nuevo registro</button>
+        </div>
+      </div>
+
+      <div class="filters" aria-label="Filtros de registros">
+        <div class="field search-field">
+          <label for="searchInput">Búsqueda</label>
+          <div class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input id="searchInput" class="control" type="search" list="dlSearchHints" placeholder="Buscar Nro. ingreso, cliente, serial..."></div>
+        </div>
+        <div class="field">
+          <label for="statusFilter">Filtrar por estado</label>
+          <select id="statusFilter" class="control">
+            <option value="">Todos los estados</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Completado">Completado</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="equipmentFilter">Equipo o modelo</label>
+          <input id="equipmentFilter" class="control" type="search" list="dlEquipoSugerencias" placeholder="Ej. Laptop, PLC, impresora...">
+        </div>
+        <div class="field">
+          <label for="dateFrom">Desde</label>
+          <input id="dateFrom" class="control" type="date">
+        </div>
+        <div class="field">
+          <label for="dateTo">Hasta</label>
+          <input id="dateTo" class="control" type="date">
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="btn btn-secondary" id="clearFiltersBtn">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="result-count" id="resultCount" aria-live="polite">Mostrando <strong>0</strong> registros</div>
+        <div class="view-switch" role="group" aria-label="Cambiar vista">
+          <button type="button" class="view-btn active" id="tableViewBtn" aria-pressed="true">▤ Tabla</button>
+          <button type="button" class="view-btn" id="cardsViewBtn" aria-pressed="false">▦ Tarjetas</button>
+        </div>
+      </div>
+
+      <div id="tableView" class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>NRO. INGRESO / ID</th><th>FECHA</th><th>CLIENTE</th><th>EQUIPO / MODELO</th>
+              <th>SERVICIO / DIAGNÓSTICO</th><th>ESTADO</th><th>TOTAL / ABONO / RESTA</th><th>ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody id="recordsTableBody"></tbody>
+        </table>
+      </div>
+      <div id="cardsView" class="cards-grid hidden"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div style="font-size:30px;margin-bottom:8px" aria-hidden="true">▤</div>
+        <strong id="emptyTitle">Aún no hay registros</strong>
+        <span id="emptyMessage">Crea el primer registro de servicio para comenzar.</span>
+      </div>
+
+      <footer class="footer">
+        <span>Base de datos 1.0 · Drive: afdsistemas.base.datos@gmail.com + respaldo local</span>
+        <span class="save-status" id="saveStatus">Datos guardados localmente</span>
+      </footer>
+    </section>
+  </main>
+
+  <!-- DATALISTS DE SUGERENCIAS INTELIGENTES PARA TODOS LOS CAMPOS -->
+  <datalist id="dlSearchHints"></datalist>
+  <datalist id="dlClientes">
+    <option value="Consumidor Final"></option>
+    <option value="Taller Industrial"></option>
+    <option value="Empresa / Oficina"></option>
+  </datalist>
+  <datalist id="dlDirecciones">
+    <option value="Av. Maldonado"></option>
+    <option value="Sur de Quito"></option>
+    <option value="Centro Histórico"></option>
+    <option value="Chillogallo"></option>
+    <option value="Quitumbe"></option>
+  </datalist>
+  <datalist id="dlRecibidoPor">
+    <option value="Jonathan"></option>
+    <option value="Recepción AFD"></option>
+    <option value="Soporte Técnico"></option>
+  </datalist>
+  <datalist id="dlMarcas">
+    <option value="HP"></option>
+    <option value="Dell"></option>
+    <option value="Lenovo"></option>
+    <option value="Gateway"></option>
+    <option value="ASUS"></option>
+    <option value="Acer"></option>
+    <option value="Epson"></option>
+    <option value="Canon"></option>
+    <option value="Samsung"></option>
+    <option value="Siemens"></option>
+  </datalist>
+  <datalist id="dlModelos">
+    <option value="WorkForce WF-2830"></option>
+    <option value="ThinkPad E14 Gen 5"></option>
+    <option value="GWTN141-10BK"></option>
+    <option value="PRIME A320M-K"></option>
+    <option value="S7-1200"></option>
+    <option value="LOGO!"></option>
+    <option value="ESP32"></option>
+  </datalist>
+  <datalist id="dlServicios">
+    <option value="Revisión técnica y diagnóstico ($10)"></option>
+    <option value="Mantenimiento preventivo y limpieza"></option>
+    <option value="Reparación de placa madre / electrónica"></option>
+    <option value="Instalación y configuración de sistema"></option>
+    <option value="Reparación de impresora / cabezal"></option>
+    <option value="Automatización / tablero / PLC"></option>
+  </datalist>
+  <datalist id="dlEquipoSugerencias">
+    <option value="Laptop"></option>
+    <option value="Impresora"></option>
+    <option value="PC Escritorio"></option>
+    <option value="PLC / Variador"></option>
+    <option value="Celular / Tablet"></option>
+  </datalist>
+
+  <!-- MODAL CREAR / EDITAR / VER -->
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle">Nuevo registro</h2>
+          <p id="modalSubtitle">Completa los datos de la orden de servicio.</p>
+        </div>
+        <button type="button" class="close-btn" id="closeModalBtn" aria-label="Cerrar">×</button>
+      </div>
+      <form id="recordForm">
+        <div class="modal-body" id="formBody"></div>
+        <div class="modal-footer" id="formFooter"></div>
+      </form>
+    </section>
+  </div>
+
+  <!-- MODAL WHATSAPP -->
+  <div class="modal-backdrop hidden" id="waModalBackdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="waModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="waModalTitle">Enviar orden por WhatsApp</h2>
+          <p>Comprobante listo con el formato oficial de AFDSISTEMAS.</p>
+        </div>
+        <button type="button" class="close-btn" id="closeWaModalBtn" aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="field wide">
+            <label for="waPhoneInput">Celular / WhatsApp del cliente (ej. 0992835549 o 593992835549)</label>
+            <input class="control" id="waPhoneInput" type="tel" placeholder="Deja vacío para elegir contacto al abrir WhatsApp">
+          </div>
+          <div class="field wide">
+            <label>Vista previa del mensaje</label>
+            <div class="wa-preview" id="waMessagePreview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="copyWaBtn">Copiar mensaje</button>
+        <button type="button" class="btn btn-whatsapp" id="sendWaBtn">Enviar por WhatsApp</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL CONFIGURACIÓN GOOGLE DRIVE / NUBE AUTOMÁTICA -->
+  <div class="modal-backdrop hidden" id="cloudModalBackdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="cloudModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="cloudModalTitle">Google Drive · Sincronización Automática</h2>
+          <p>Conecta el Web App de <b>afdsistemas.base.datos@gmail.com</b> para guardar en su Hoja / Excel en la nube.</p>
+        </div>
+        <button type="button" class="close-btn" id="closeCloudModalBtn" aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="field wide">
+            <label for="cloudEndpointInput">URL del Web App de Google Apps Script (afdsistemas.base.datos@gmail.com)</label>
+            <input class="control" id="cloudEndpointInput" type="url" placeholder="https://script.google.com/macros/s/AKfycb.../exec">
+            <p class="settings-help" style="margin-top:6px">
+              1. Entra a <b>script.google.com</b> con <b>afdsistemas.base.datos@gmail.com</b>.<br>
+              2. Pega el código <code>Code_AppsScript_AFDSISTEMAS.gs</code> y publícalo como <b>Aplicación web</b> (Ejecutar como: <i>Yo</i> · Quién tiene acceso: <i>Cualquier persona</i>).<br>
+              3. Pega la URL <code>/exec</code> aquí (o déjala fija en <code>DEFAULT_CLOUD_ENDPOINT</code> dentro de este archivo <code>index.html</code> antes de subirlo a tu hosting para que cualquiera que abra el enlace se conecte automáticamente sin configurar nada).
+            </p>
+          </div>
+          <div class="field">
+            <label for="cloudApiKeyInput">API Key opcional (solo si usas JSONBin)</label>
+            <input class="control" id="cloudApiKeyInput" type="password" placeholder="Dejar vacío para Google Apps Script">
+          </div>
+          <div class="field">
+            <label>Sincronización en todos los dispositivos</label>
+            <div class="control" style="display:flex;align-items:center;opacity:0.9">100% Automática (al abrir, cada 15s, al enfocar y al guardar)</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="clearCloudBtn">Desconectar</button>
+        <button type="button" class="btn btn-secondary" id="pullCloudBtn">Sincronizar ahora</button>
+        <button type="button" class="btn btn-primary" id="saveCloudBtn">Conectar y guardar</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE_KEY = "afd_bt_base_tecnica_registros_v2";
+      const THEME_KEY = "afd_bt_theme_v2";
+      const CLOUD_CONFIG_KEY = "afd_bt_cloud_config_v1";
+
+      // PEGA AQUÍ TU URL /exec DE GOOGLE APPS SCRIPT (afdsistemas.base.datos@gmail.com)
+      // PARA QUE CUALQUIER DISPOSITIVO NUEVO SE CONECTE AUTOMÁTICAMENTE SIN CONFIGURAR NADA:
+      const DEFAULT_CLOUD_ENDPOINT = "https://script.google.com/macros/s/AKfycbw5Rptw3KPthZN0fMxsj990l8BgyU1Uyi149sGWP_JLINXAHLFrXhsizd_wbpMpyhpB/exec";
+
+      const STATUSES = ["Pendiente", "En proceso", "Completado"];
+
+      function loadCloudConfig() {
+        try {
+          const raw = localStorage.getItem(CLOUD_CONFIG_KEY);
+          if (!raw) {
+            return { endpoint: DEFAULT_CLOUD_ENDPOINT.trim(), apiKey: "", autoSync: true };
+          }
+          const cfg = JSON.parse(raw);
+          const savedEndpoint = String(cfg.endpoint || "").trim();
+          return {
+            endpoint: savedEndpoint || DEFAULT_CLOUD_ENDPOINT.trim(),
+            apiKey: String(cfg.apiKey || "").trim(),
+            autoSync: true
+          };
+        } catch (_) {
+          return { endpoint: DEFAULT_CLOUD_ENDPOINT.trim(), apiKey: "", autoSync: true };
+        }
+      }
+
+      function saveCloudConfig(cfg) {
+        try {
+          localStorage.setItem(CLOUD_CONFIG_KEY, JSON.stringify({
+            endpoint: String(cfg.endpoint || "").trim(),
+            apiKey: String(cfg.apiKey || "").trim(),
+            autoSync: true
+          }));
+        } catch (_) {}
+      }
+
+      function isGoogleAppsScriptUrl(url) {
+        return /script\.google\.com|script\.googleusercontent\.com/i.test(String(url || ""));
+      }
+
+      function setCloudUiState(state, customLabel) {
+        const btn = $("cloudSyncBtn");
+        const label = $("cloudBtnLabel");
+        if (!btn || !label) return;
+        btn.classList.remove("is-online", "is-syncing", "is-error");
+        if (state === "online") {
+          btn.classList.add("is-online");
+          label.textContent = customLabel || "☁ Drive Activo";
+        } else if (state === "syncing") {
+          btn.classList.add("is-syncing");
+          label.textContent = customLabel || "☁ Sincronizando...";
+        } else if (state === "error") {
+          btn.classList.add("is-error");
+          label.textContent = customLabel || "☁ Reconectando...";
+        } else {
+          label.textContent = customLabel || "☁ Configurar Drive";
+        }
+      }
+
+      function buildCloudHeaders(cfg) {
+        // Para Google Apps Script usamos text/plain para evitar preflight CORS OPTIONS
+        if (isGoogleAppsScriptUrl(cfg.endpoint)) {
+          return { "Content-Type": "text/plain;charset=utf-8" };
+        }
+        const headers = { "Content-Type": "application/json" };
+        if (cfg.apiKey) {
+          headers["X-Master-Key"] = cfg.apiKey;
+          headers["X-Access-Key"] = cfg.apiKey;
+        }
+        return headers;
+      }
+
+      function normalizeOrderList(list) {
+        if (!Array.isArray(list)) return [];
+        return list.filter((r) => r && typeof r === "object").map((r) => {
+          const totalNum = Number(r.cost ?? r.total ?? 0) || 0;
+          const abonoNum = Number(r.abono ?? 0) || 0;
+          return {
+            id: String(r.id || r.orderNumber || "1000"),
+            orderNumber: String(r.orderNumber || r.id || "1000"),
+            date: String(r.date || ""),
+            time: String(r.time || "08:30"),
+            client: String(r.client || ""),
+            rut: String(r.rut || ""),
+            address: String(r.address || ""),
+            phone: String(r.phone || ""),
+            receivedBy: String(r.receivedBy || "Jonathan"),
+            brand: String(r.brand || ""),
+            model: String(r.model || ""),
+            serial: String(r.serial || ""),
+            equipment: String(r.equipment || [r.brand, r.model].filter(Boolean).join(" / ")),
+            service: String(r.service || r.diagnosis || ""),
+            diagnosis: String(r.diagnosis || r.service || ""),
+            status: STATUSES.includes(r.status) ? r.status : "Pendiente",
+            cost: r.cost === "" || r.cost == null ? "" : String(r.cost),
+            abono: r.abono === "" || r.abono == null ? "" : String(r.abono),
+            resta: r.resta === "" || r.resta == null ? String(Math.max(0, totalNum - abonoNum).toFixed(2)) : String(r.resta),
+            observations: String(r.observations || ""),
+            updatedAt: Number(r.updatedAt || 0) || Date.now()
+          };
+        });
+      }
+
+      let isSyncInFlight = false;
+      let hasPendingLocalPush = false;
+
+      async function pullFromCloud(silent = true) {
+        const cfg = loadCloudConfig();
+        if (!cfg.endpoint) {
+          setCloudUiState("off");
+          return false;
+        }
+        if (isSyncInFlight || hasPendingLocalPush) return false;
+        isSyncInFlight = true;
+        try {
+          setCloudUiState("syncing");
+          if (!silent && elements.saveStatus) elements.saveStatus.textContent = "Sincronizando con Google Drive...";
+
+          const separator = cfg.endpoint.includes("?") ? "&" : "?";
+          const url = isGoogleAppsScriptUrl(cfg.endpoint)
+            ? `${cfg.endpoint}${separator}_ts=${Date.now()}`
+            : cfg.endpoint;
+
+          const fetchOpts = isGoogleAppsScriptUrl(cfg.endpoint)
+            ? { method: "GET", cache: "no-store" }
+            : { method: "GET", headers: buildCloudHeaders(cfg), cache: "no-store" };
+
+          const res = await fetch(url, fetchOpts);
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const data = await res.json();
+          if (data && data.ok === false) throw new Error(data.error || "Error en Apps Script");
+
+          const rawList = Array.isArray(data)
+            ? data
+            : Array.isArray(data?.record)
+              ? data.record
+              : Array.isArray(data?.ordenes)
+                ? data.ordenes
+                : [];
+
+          const incoming = normalizeOrderList(rawList);
+          const currentSerialized = JSON.stringify(records);
+          const incomingSerialized = JSON.stringify(incoming);
+
+          if (currentSerialized !== incomingSerialized) {
+            records = incoming;
+            localStorage.setItem(STORAGE_KEY, incomingSerialized);
+            render();
+          }
+
+          const nowTime = new Date().toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" });
+          setCloudUiState("online", `☁ Drive · ${nowTime}`);
+          if (elements.saveStatus) elements.saveStatus.textContent = `Sincronizado con Drive (${nowTime})`;
+          if (!silent) showToast(`Sincronizado con Drive: ${records.length} registro(s).`);
+          return true;
+        } catch (err) {
+          console.warn("Error al descargar de Drive/nube:", err);
+          setCloudUiState("error");
+          if (elements.saveStatus) elements.saveStatus.textContent = "Modo local (sin conexión a Drive)";
+          if (!silent) showToast("No se pudo conectar con Google Drive. Revisa la URL /exec.");
+          return false;
+        } finally {
+          isSyncInFlight = false;
+        }
+      }
+
+      async function pushToCloud(silent = true) {
+        const cfg = loadCloudConfig();
+        if (!cfg.endpoint) {
+          setCloudUiState("off");
+          return false;
+        }
+        hasPendingLocalPush = true;
+        while (isSyncInFlight) {
+          await new Promise((r) => setTimeout(r, 120));
+        }
+        isSyncInFlight = true;
+        try {
+          setCloudUiState("syncing", "☁ Guardando...");
+          if (elements.saveStatus) elements.saveStatus.textContent = "Guardando en Google Drive...";
+
+          const isGas = isGoogleAppsScriptUrl(cfg.endpoint);
+          const res = await fetch(cfg.endpoint, {
+            method: isGas ? "POST" : "PUT",
+            headers: buildCloudHeaders(cfg),
+            body: JSON.stringify(isGas ? { mode: "replace", records } : records)
+          });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const data = await res.json().catch(() => ({}));
+          if (data && data.ok === false) throw new Error(data.error || "Error al guardar en Drive");
+
+          hasPendingLocalPush = false;
+          const nowTime = new Date().toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" });
+          setCloudUiState("online", `☁ Drive · ${nowTime}`);
+          if (elements.saveStatus) elements.saveStatus.textContent = `Guardado en Drive (${nowTime})`;
+          if (!silent) showToast("Órdenes guardadas en Google Drive (afdsistemas.base.datos@gmail.com).");
+          return true;
+        } catch (err) {
+          console.warn("Error al subir a Drive/nube:", err);
+          setCloudUiState("error");
+          if (elements.saveStatus) elements.saveStatus.textContent = "Guardado local (reintentando Drive...)";
+          if (!silent) showToast("Guardado local; no se pudo subir a Drive.");
+          return false;
+        } finally {
+          isSyncInFlight = false;
+        }
+      }
+
+      const QUICK_SUGGESTIONS = {
+        client: ["Consumidor Final", "Empresa / Oficina", "Técnico / Taller"],
+        rut: ["9999999999001", "1803908548001"],
+        address: ["Av. Maldonado", "Sur de Quito", "Centro Histórico"],
+        receivedBy: ["Jonathan", "Recepción AFD"],
+        brand: ["HP", "Dell", "Lenovo", "Epson", "Gateway", "ASUS", "Siemens"],
+        model: ["WorkForce WF-2830", "ThinkPad E14 Gen 5", "GWTN141-10BK", "S7-1200"],
+        service: ["Revisión ($10)", "Mantenimiento preventivo", "Reparación de placa", "Diagnóstico de falla"],
+        observations: ["Sin cargador", "Con cable de poder", "Equipo con rayones leves", "Entregado sin accesorios"]
+      };
+
+      const WA_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.59 5.95L0 24l6.33-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.42zM12.07 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 7c0 5.45-4.44 9.89-9.88 9.89zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>`;
+
+      let records = loadRecords();
+      let viewMode = "table";
+      let toastTimer;
+      let activeWaRecord = null;
+      let scannerStream = null;
+      let scannerRaf = null;
+
+      const $ = (id) => document.getElementById(id);
+      const elements = {
+        total: $("totalCount"), pending: $("pendingCount"), progress: $("progressCount"), done: $("doneCount"),
+        search: $("searchInput"), status: $("statusFilter"), equipment: $("equipmentFilter"),
+        dateFrom: $("dateFrom"), dateTo: $("dateTo"), tableBody: $("recordsTableBody"),
+        tableView: $("tableView"), cardsView: $("cardsView"), empty: $("emptyState"),
+        emptyTitle: $("emptyTitle"), emptyMessage: $("emptyMessage"), resultCount: $("resultCount"),
+        modal: $("modalBackdrop"), modalTitle: $("modalTitle"), modalSubtitle: $("modalSubtitle"),
+        form: $("recordForm"), formBody: $("formBody"), formFooter: $("formFooter"),
+        saveStatus: $("saveStatus"), toast: $("toast"),
+        settingsBtn: $("settingsBtn"), settingsPopover: $("settingsPopover"),
+        themeLightBtn: $("themeLightBtn"), themeDarkBtn: $("themeDarkBtn"),
+        waModal: $("waModalBackdrop"), waPhoneInput: $("waPhoneInput"), waMessagePreview: $("waMessagePreview")
+      };
+
+      /* TEMA CLARO / OSCURO */
+      function applyTheme(theme) {
+        const chosen = theme === "dark" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", chosen);
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", chosen === "dark" ? "#0A2E47" : "#36A9E1");
+        elements.themeLightBtn.classList.toggle("active", chosen === "light");
+        elements.themeDarkBtn.classList.toggle("active", chosen === "dark");
+        try { localStorage.setItem(THEME_KEY, chosen); } catch (_) {}
+      }
+
+      applyTheme((() => { try { return localStorage.getItem(THEME_KEY) || "light"; } catch (_) { return "light"; } })());
+
+      elements.settingsBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const open = elements.settingsPopover.classList.toggle("hidden");
+        elements.settingsBtn.setAttribute("aria-expanded", String(!open));
+      });
+      document.querySelectorAll("[data-set-theme]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          applyTheme(btn.dataset.setTheme);
+          elements.settingsPopover.classList.add("hidden");
+          elements.settingsBtn.setAttribute("aria-expanded", "false");
+          showToast(btn.dataset.setTheme === "dark" ? "Tema oscuro activado." : "Tema claro activado.");
+        });
+      });
+      document.addEventListener("click", (e) => {
+        if (!elements.settingsPopover.classList.contains("hidden")
+            && !elements.settingsPopover.contains(e.target)
+            && !elements.settingsBtn.contains(e.target)) {
+          elements.settingsPopover.classList.add("hidden");
+          elements.settingsBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      /* GENERADOR DE NÚMERO DE INGRESO NUMÉRICO (INICIA EN 1000, EDITABLE EN EL EQUIPO) */
+      function generateOrderNumber() {
+        let maxNum = 999;
+        for (const r of records) {
+          for (const candidate of [r.orderNumber, r.id]) {
+            const match = String(candidate ?? "").trim().match(/^(\d+)$/);
+            if (match) {
+              const n = parseInt(match[1], 10);
+              if (n >= 1000 && n > maxNum) maxNum = n;
+            }
+          }
+        }
+        return String(Math.max(1000, maxNum + 1));
+      }
+
+      function loadRecords() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("afd_bt_base_tecnica_registros_v1");
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return [];
+          return parsed.filter((r) => r && typeof r === "object").map((r) => {
+            const totalNum = Number(r.cost ?? r.total ?? 0) || 0;
+            const abonoNum = Number(r.abono ?? 0) || 0;
+            return {
+              id: String(r.id || r.orderNumber || generateOrderNumber()),
+              orderNumber: String(r.orderNumber || r.id || generateOrderNumber()),
+              date: String(r.date || ""),
+              time: String(r.time || "08:30"),
+              client: String(r.client || ""),
+              rut: String(r.rut || ""),
+              address: String(r.address || ""),
+              phone: String(r.phone || ""),
+              receivedBy: String(r.receivedBy || "Jonathan"),
+              brand: String(r.brand || ""),
+              model: String(r.model || ""),
+              serial: String(r.serial || ""),
+              equipment: String(r.equipment || [r.brand, r.model].filter(Boolean).join(" / ")),
+              service: String(r.service || r.diagnosis || ""),
+              diagnosis: String(r.diagnosis || r.service || ""),
+              status: STATUSES.includes(r.status) ? r.status : "Pendiente",
+              cost: r.cost === "" || r.cost == null ? "" : String(r.cost),
+              abono: r.abono === "" || r.abono == null ? "" : String(r.abono),
+              resta: r.resta === "" || r.resta == null ? String(Math.max(0, totalNum - abonoNum).toFixed(2)) : String(r.resta),
+              observations: String(r.observations || ""),
+              updatedAt: Number(r.updatedAt || 0) || Date.now()
+            };
+          });
+        } catch (err) {
+          console.warn("Error cargando registros:", err);
+          return [];
+        }
+      }
+
+      function saveRecords() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+          const cfg = loadCloudConfig();
+          elements.saveStatus.textContent = cfg.endpoint ? "Guardando en Drive..." : "Guardado local";
+          if (cfg.endpoint) {
+            pushToCloud(true);
+          }
+          return true;
+        } catch (_) {
+          elements.saveStatus.textContent = "Error al guardar";
+          showToast("No se pudo guardar localmente.");
+          return false;
+        }
+      }
+
+      function escapeHtml(v) {
+        return String(v ?? "").replace(/[&<>"']/g, (c) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        })[c]);
+      }
+
+      function formatDate(d) {
+        if (!d) return "00/00/0000";
+        const p = d.split("-");
+        return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : d;
+      }
+
+      function formatMoneyPlain(v) {
+        const n = Number(v);
+        return Number.isFinite(n) && String(v).trim() !== "" ? n.toFixed(2) : "0.00";
+      }
+
+      function formatCostDisplay(v) {
+        if (v === "" || v == null || !Number.isFinite(Number(v))) return "—";
+        return new Intl.NumberFormat("es-EC", { style: "currency", currency: "USD" }).format(Number(v));
+      }
+
+      function statusClass(s) {
+        if (s === "En proceso") return "status-proceso";
+        if (s === "Completado") return "status-completado";
+        return "status-pendiente";
+      }
+
+      /* ACTUALIZAR DATALISTS CON DATOS HISTÓRICOS + SUGERENCIAS */
+      function refreshSuggestions() {
+        const unique = (arr) => [...new Set(arr.map((x) => String(x || "").trim()).filter(Boolean))];
+        const fillList = (id, items) => {
+          const el = $(id);
+          if (el) el.innerHTML = items.map((x) => `<option value="${escapeHtml(x)}"></option>`).join("");
+        };
+        fillList("dlClientes", unique([...QUICK_SUGGESTIONS.client, ...records.map((r) => r.client)]));
+        fillList("dlDirecciones", unique([...QUICK_SUGGESTIONS.address, ...records.map((r) => r.address)]));
+        fillList("dlRecibidoPor", unique([...QUICK_SUGGESTIONS.receivedBy, ...records.map((r) => r.receivedBy)]));
+        fillList("dlMarcas", unique([...QUICK_SUGGESTIONS.brand, ...records.map((r) => r.brand)]));
+        fillList("dlModelos", unique([...QUICK_SUGGESTIONS.model, ...records.map((r) => r.model)]));
+        fillList("dlServicios", unique([...QUICK_SUGGESTIONS.service, ...records.map((r) => r.service)]));
+        fillList("dlEquipoSugerencias", unique(["Laptop", "Impresora", "PC Escritorio", "PLC / Variador", ...records.map((r) => r.equipment)]));
+        fillList("dlSearchHints", unique([...records.map((r) => r.orderNumber), ...records.map((r) => r.client), ...records.map((r) => r.serial)]));
+      }
+
+      function chipsHtml(targetId, listKey) {
+        const items = QUICK_SUGGESTIONS[listKey] || [];
+        return `<div class="suggestion-chips">${items.map((item) =>
+          `<button type="button" class="chip-btn" data-chip-target="${targetId}" data-chip-val="${escapeHtml(item)}">${escapeHtml(item)}</button>`
+        ).join("")}</div>`;
+      }
+
+      /* MENSAJES RAPIDOS DE SEMAFORO (CARITAS) PARA AVISO POR WHATSAPP */
+      function buildSemaphoreMessage(r, kind) {
+        const orderNro = r.orderNumber || r.id || "";
+        const eqLabel = r.equipment || [r.brand, r.model].filter(Boolean).join(" / ") || "su equipo";
+        const serialPart = r.serial ? ` (SN: ${r.serial})` : "";
+        const computedResta = Math.max(0, (Number(r.cost) || 0) - (Number(r.abono) || 0));
+        const restaStr = r.resta !== "" && r.resta != null && Number.isFinite(Number(r.resta))
+          ? formatMoneyPlain(r.resta)
+          : computedResta.toFixed(2);
+
+        let estadoTexto = "";
+        let detalleAviso = "";
+
+        if (kind === "ready") {
+          estadoTexto = "🟢 EQUIPO LISTO PARA RETIRO";
+          detalleAviso = `Hola ${r.client || "cliente"}, le informamos desde *AFDSISTEMAS* que su equipo *${eqLabel}*${serialPart} (Orden Nro. *${orderNro}*) ya está *LISTO* y puede pasar a retirarlo en nuestra dirección: Av. Maldonado S34-289 y Diego Gutiérrez (frente a la fábrica Plywood). Saldo pendiente: $${restaStr}.`;
+        } else if (kind === "wait-time") {
+          estadoTexto = "🟡 EQUIPO YA LLEVA UN TIEMPO EN ESPERA A RETIRO";
+          detalleAviso = `Hola ${r.client || "cliente"}, le recordamos desde *AFDSISTEMAS* que su equipo *${eqLabel}*${serialPart} (Orden Nro. *${orderNro}*) ya lleva un tiempo en espera para retiro. Por favor acérquese a retirarlo o comuníquese al 0992835549. Saldo pendiente: $${restaStr}.`;
+        } else {
+          estadoTexto = "🔴 TIEMPO DE ESPERA CUMPLIDO · PASA A RECICLAJE";
+          detalleAviso = `Hola ${r.client || "cliente"}, le notificamos desde *AFDSISTEMAS* que su equipo *${eqLabel}*${serialPart} (Orden Nro. *${orderNro}*) ha cumplido el tiempo límite de espera para retiro y será enviado a *RECICLAJE*. Si desea recuperarlo de inmediato, comuníquese urgentemente al 0992835549. Saldo pendiente: $${restaStr}.`;
+        }
+
+        return [
+          "AFDSISTEMAS - AVISO DE RETIRO",
+          `ESTADO: ${estadoTexto}`,
+          `ORDEN DE SERVICIO Nro. ${orderNro}`,
+          `CLIENTE: ${r.client || ""}`,
+          `EQUIPO: ${eqLabel}${serialPart}`,
+          "",
+          detalleAviso,
+          "",
+          "Teléfonos: 022733872 - 0992835549",
+          "SOMOS AFDSISTEMAS."
+        ].join("\n");
+      }
+
+      function sendSemaphoreWhatsApp(r, kind) {
+        const msg = buildSemaphoreMessage(r, kind);
+        const norm = normalizePhone(r.phone || "");
+        const encoded = encodeURIComponent(msg);
+        const url = norm ? `https://wa.me/${norm}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
+        window.open(url, "_blank", "noopener,noreferrer");
+        const labels = {
+          "ready": "Enviando WhatsApp: Equipo listo (verde)",
+          "wait-time": "Enviando WhatsApp: Tiempo en espera (amarillo)",
+          "wait-long": "Enviando WhatsApp: Tiempo cumplido · pasa a reciclaje (rojo)"
+        };
+        showToast(labels[kind] || "Enviando mensaje por WhatsApp...");
+      }
+
+      function semaforoButtonsHtml(recordId) {
+        const idEsc = escapeHtml(recordId);
+        return `
+          <div class="semaforo-group" role="group" aria-label="Aviso de retiro por WhatsApp">
+            <button type="button" class="semaforo-btn ready" data-action="wa-ready" data-id="${idEsc}" title="Equipo listo → Enviar WhatsApp" aria-label="Equipo listo">😊</button>
+            <button type="button" class="semaforo-btn wait-time" data-action="wa-wait-time" data-id="${idEsc}" title="Lleva un tiempo en espera a retiro → Enviar WhatsApp" aria-label="Lleva un tiempo en espera">😐</button>
+            <button type="button" class="semaforo-btn wait-long" data-action="wa-wait-long" data-id="${idEsc}" title="Lleva mucho tiempo en espera a retiro → Enviar WhatsApp" aria-label="Lleva mucho tiempo en espera a retiro">☹</button>
+          </div>`;
+      }
+
+      /* MENSAJE WHATSAPP CON EL FORMATO EXACTO SOLICITADO */
+      function buildWhatsAppMessage(r) {
+        const orderNro = r.orderNumber || r.id || "";
+        const fechaHora = `${formatDate(r.date)} ${r.time || "00:00"}`.trim();
+        const totalStr = formatMoneyPlain(r.cost);
+        const abonoStr = formatMoneyPlain(r.abono);
+        const computedResta = Math.max(0, (Number(r.cost) || 0) - (Number(r.abono) || 0));
+        const restaStr = r.resta !== "" && r.resta != null && Number.isFinite(Number(r.resta))
+          ? formatMoneyPlain(r.resta)
+          : computedResta.toFixed(2);
+
+        return [
+          "AFDSISTEMAS",
+          "1803908548001",
+          "DIRECCION: AV. MALDONADO S34-289 Y DIEGO GUTIERREZ FRENTE A LA FABRICA PLYWOOD",
+          "022733872 - 0992835549",
+          "",
+          `CLIENTE: ${r.client || ""}`,
+          `RUT: ${r.rut || ""}`,
+          `DIRECCIÓN: ${r.address || ""}`,
+          `CELULAR: ${r.phone || ""}`,
+          `RECIBIDO POR: ${r.receivedBy || ""}`,
+          "--------------------------------------",
+          `ORDEN DE SERVICIO Nro. ${orderNro}`,
+          "--------------------------------------",
+          `FECHA INGRESO: ${fechaHora}`,
+          `MARCA: ${r.brand || ""}`,
+          `MODELO: ${r.model || r.equipment || ""}`,
+          `SERIAL: ${r.serial || ""}`,
+          `SERVICIO: ${r.service || r.diagnosis || ""}`,
+          `OBSERVACIONES: ${r.observations || ""}`,
+          `ESTADO DEL SERVICIO: ${r.status || ""}`,
+          "",
+          `Total: ${totalStr}`,
+          `Abono: ${abonoStr}`,
+          `Resta: ${restaStr}`,
+          "CONDICIONES:",
+          "Para el retiro de los equipos presentar su cédula física.",
+          "Si envía a terceros: cédula del propietario y de la persona que retira.",
+          "Toda revisión tiene un costo de $10.",
+          "Equipos con más de 30 días: comisión adicional.",
+          "Con más de 60 días: el equipo será enviado a reciclaje.",
+          "Si no se esta de acuerdo con las condiciones comunicarse al 0992835549 para evitar percances.",
+          "SOMOS AFDSISTEMAS."
+        ].join("\n");
+      }
+
+      function normalizePhone(raw) {
+        let d = String(raw || "").replace(/\D/g, "");
+        if (!d) return "";
+        if (d.startsWith("00")) d = d.slice(2);
+        if (d.length === 10 && d.startsWith("09")) d = "593" + d.slice(1);
+        else if (d.length === 9 && d.startsWith("9")) d = "593" + d;
+        return d;
+      }
+
+      function openWhatsAppModal(record) {
+        activeWaRecord = record;
+        elements.waPhoneInput.value = record.phone || "";
+        elements.waMessagePreview.textContent = buildWhatsAppMessage(record);
+        elements.waModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeWhatsAppModal() {
+        elements.waModal.classList.add("hidden");
+        document.body.style.overflow = "";
+        activeWaRecord = null;
+      }
+
+      $("closeWaModalBtn").addEventListener("click", closeWhatsAppModal);
+      elements.waModal.addEventListener("click", (e) => {
+        if (e.target === elements.waModal) closeWhatsAppModal();
+      });
+      $("copyWaBtn").addEventListener("click", async () => {
+        if (!activeWaRecord) return;
+        try {
+          await navigator.clipboard.writeText(buildWhatsAppMessage(activeWaRecord));
+          showToast("Comprobante copiado.");
+        } catch (_) {
+          showToast("No se pudo copiar.");
+        }
+      });
+      $("sendWaBtn").addEventListener("click", () => {
+        if (!activeWaRecord) return;
+        const phoneInputVal = elements.waPhoneInput.value.trim();
+        if (phoneInputVal !== activeWaRecord.phone) {
+          activeWaRecord.phone = phoneInputVal;
+          activeWaRecord.updatedAt = Date.now();
+          saveRecords();
+          render();
+        }
+        const norm = normalizePhone(phoneInputVal);
+        const encoded = encodeURIComponent(buildWhatsAppMessage(activeWaRecord));
+        const url = norm ? `https://wa.me/${norm}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
+        window.open(url, "_blank", "noopener,noreferrer");
+        closeWhatsAppModal();
+      });
+
+      /* ESCÁNER DE CÓDIGO DE BARRAS PARA NÚMERO DE SERIE */
+      async function startBarcodeScanner() {
+        const box = $("scannerBox");
+        const video = $("scannerVideo");
+        const statusEl = $("scannerStatus");
+        if (!box || !video) return;
+        box.classList.remove("hidden");
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          statusEl.textContent = "Cámara no disponible en este navegador. Escribe o pega el serial manualmente.";
+          return;
+        }
+
+        try {
+          stopBarcodeScanner(false);
+          scannerStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: "environment" } }
+          });
+          video.srcObject = scannerStream;
+          await video.play();
+
+          if ("BarcodeDetector" in window) {
+            const detector = new window.BarcodeDetector({
+              formats: ["code_128", "code_39", "ean_13", "ean_8", "upc_a", "upc_e", "qr_code", "codabar", "itf"]
+            });
+            statusEl.textContent = "Apunta la cámara al código de barras o serial...";
+            const scanLoop = async () => {
+              if (box.classList.contains("hidden")) return;
+              try {
+                if (video.readyState >= 2) {
+                  const codes = await detector.detect(video);
+                  if (codes && codes.length > 0 && codes[0].rawValue) {
+                    const serialInput = $("formSerial");
+                    if (serialInput) serialInput.value = codes[0].rawValue.trim();
+                    showToast(`Serial escaneado: ${codes[0].rawValue.trim()}`);
+                    stopBarcodeScanner(true);
+                    return;
+                  }
+                }
+              } catch (_) {}
+              scannerRaf = requestAnimationFrame(scanLoop);
+            };
+            scannerRaf = requestAnimationFrame(scanLoop);
+          } else {
+            statusEl.textContent = "Cámara activa. Si tu navegador no detecta códigos automáticamente, usa el lector de código de barras o escríbelo manual.";
+          }
+        } catch (_) {
+          statusEl.textContent = "No se pudo abrir la cámara. Puedes escribir o escanear con lector USB/manualmente.";
+        }
+      }
+
+      function stopBarcodeScanner(hideBox = true) {
+        if (scannerRaf) {
+          cancelAnimationFrame(scannerRaf);
+          scannerRaf = null;
+        }
+        if (scannerStream) {
+          scannerStream.getTracks().forEach((t) => t.stop());
+          scannerStream = null;
+        }
+        const video = $("scannerVideo");
+        if (video) video.srcObject = null;
+        const box = $("scannerBox");
+        if (box && hideBox) box.classList.add("hidden");
+      }
+
+      /* FILTRADO Y RENDERIZADO */
+      function getFilteredRecords() {
+        const q = elements.search.value.trim().toLocaleLowerCase("es");
+        const eq = elements.equipment.value.trim().toLocaleLowerCase("es");
+        const st = elements.status.value;
+        const from = elements.dateFrom.value;
+        const to = elements.dateTo.value;
+
+        return records.filter((r) => {
+          const hay = [r.orderNumber, r.id, r.client, r.rut, r.phone, r.brand, r.model, r.equipment, r.serial, r.service, r.diagnosis, r.status, r.observations]
+            .join(" ").toLocaleLowerCase("es");
+          const eqHay = [r.brand, r.model, r.equipment].join(" ").toLocaleLowerCase("es");
+          return (!q || hay.includes(q))
+            && (!eq || eqHay.includes(eq))
+            && (!st || r.status === st)
+            && (!from || r.date >= from)
+            && (!to || r.date <= to);
+        }).sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.orderNumber || b.id).localeCompare(a.orderNumber || a.id));
+      }
+
+      function render() {
+        refreshSuggestions();
+        elements.total.textContent = records.length;
+        elements.pending.textContent = records.filter((r) => r.status === "Pendiente").length;
+        elements.progress.textContent = records.filter((r) => r.status === "En proceso").length;
+        elements.done.textContent = records.filter((r) => r.status === "Completado").length;
+
+        const filtered = getFilteredRecords();
+        elements.resultCount.innerHTML = `Mostrando <strong>${filtered.length}</strong> de <strong>${records.length}</strong> registros`;
+        elements.empty.classList.toggle("hidden", filtered.length !== 0);
+        elements.tableView.classList.toggle("hidden", viewMode !== "table" || filtered.length === 0);
+        elements.cardsView.classList.toggle("hidden", viewMode !== "cards" || filtered.length === 0);
+
+        if (filtered.length === 0) {
+          const hasFilters = Boolean(elements.search.value || elements.status.value || elements.equipment.value || elements.dateFrom.value || elements.dateTo.value);
+          elements.emptyTitle.textContent = records.length === 0 ? "Aún no hay registros" : "No se encontraron registros";
+          elements.emptyMessage.textContent = records.length === 0
+            ? "Crea el primer registro de servicio para comenzar."
+            : hasFilters ? "Prueba cambiando o limpiando los filtros." : "Crea un registro para comenzar.";
+        }
+
+        elements.tableBody.innerHTML = filtered.map((r) => {
+          const eqLabel = r.equipment || [r.brand, r.model].filter(Boolean).join(" / ") || "—";
+          const srvLabel = r.service || r.diagnosis || "—";
+          return `
+            <tr>
+              <td><span class="id-text">${escapeHtml(r.orderNumber || r.id)}</span>${r.serial ? `<span class="subtext">SN: ${escapeHtml(r.serial)}</span>` : ""}</td>
+              <td><span class="date-text">${escapeHtml(formatDate(r.date))}</span>${r.time ? `<span class="subtext">${escapeHtml(r.time)}</span>` : ""}</td>
+              <td><span class="client-name">${escapeHtml(r.client)}</span>${r.phone ? `<span class="subtext">📱 ${escapeHtml(r.phone)}</span>` : ""}</td>
+              <td><span>${escapeHtml(eqLabel)}</span></td>
+              <td><span class="diagnosis-text" title="${escapeHtml(srvLabel)}">${escapeHtml(srvLabel)}</span></td>
+              <td><div style="display:flex;flex-direction:column;align-items:flex-start"><span class="status ${statusClass(r.status)}">${escapeHtml(r.status)}</span>${semaforoButtonsHtml(r.id)}</div></td>
+              <td><span class="cost">${escapeHtml(formatCostDisplay(r.cost))}</span>${r.observations ? `<span class="subtext" title="${escapeHtml(r.observations)}">${escapeHtml(r.observations)}</span>` : ""}</td>
+              <td><div class="row-actions">
+                <button type="button" class="icon-btn wa" data-action="whatsapp" data-id="${escapeHtml(r.id)}" title="Enviar por WhatsApp" aria-label="Enviar por WhatsApp">${WA_SVG}</button>
+                <button type="button" class="icon-btn" data-action="view" data-id="${escapeHtml(r.id)}" title="Ver registro" aria-label="Ver registro">⌕</button>
+                <button type="button" class="icon-btn" data-action="edit" data-id="${escapeHtml(r.id)}" title="Editar registro" aria-label="Editar registro">✎</button>
+                <button type="button" class="icon-btn delete" data-action="delete" data-id="${escapeHtml(r.id)}" title="Eliminar registro" aria-label="Eliminar registro">×</button>
+              </div></td>
+            </tr>`;
+        }).join("");
+
+        elements.cardsView.innerHTML = filtered.map((r) => {
+          const eqLabel = r.equipment || [r.brand, r.model].filter(Boolean).join(" / ") || "—";
+          const srvLabel = r.service || r.diagnosis || "—";
+          return `
+            <article class="record-card">
+              <div class="record-card-top">
+                <div>
+                  <span class="id-text">${escapeHtml(r.orderNumber || r.id)}</span>
+                  <h3>${escapeHtml(r.client)}</h3>
+                  <p class="equipment">${escapeHtml(eqLabel)}${r.serial ? ` · SN: ${escapeHtml(r.serial)}` : ""}</p>
+                </div>
+                <span class="status ${statusClass(r.status)}">${escapeHtml(r.status)}</span>
+              </div>
+              <p class="card-diagnosis">${escapeHtml(srvLabel)}</p>
+              <div class="card-meta"><span>${escapeHtml(formatDate(r.date))}</span><strong class="cost">${escapeHtml(formatCostDisplay(r.cost))}</strong></div>
+              ${r.observations ? `<div class="subtext" style="max-width:none;margin-top:8px">${escapeHtml(r.observations)}</div>` : ""}
+              <div class="card-footer">
+                <span class="subtext">${escapeHtml(r.phone || "")}</span>
+                <div class="row-actions">
+                  <button type="button" class="icon-btn wa" data-action="whatsapp" data-id="${escapeHtml(r.id)}" title="Enviar por WhatsApp" aria-label="Enviar por WhatsApp">${WA_SVG}</button>
+                  <button type="button" class="icon-btn" data-action="view" data-id="${escapeHtml(r.id)}" title="Ver registro" aria-label="Ver registro">⌕</button>
+                  <button type="button" class="icon-btn" data-action="edit" data-id="${escapeHtml(r.id)}" title="Editar registro" aria-label="Editar registro">✎</button>
+                  <button type="button" class="icon-btn delete" data-action="delete" data-id="${escapeHtml(r.id)}" title="Eliminar registro" aria-label="Eliminar registro">×</button>
+                </div>
+              </div>
+            </article>`;
+        }).join("");
+      }
+
+      /* FORMULARIO CON NÚMERO DE INGRESO GENERADO + EDITABLE, SUGERENCIAS Y ESCÁNER DE SERIAL */
+      function renderFormFields() {
+        elements.formBody.innerHTML = `
+          <input type="hidden" id="recordId">
+          <div class="form-grid">
+            <div class="field">
+              <label for="formOrderNumber">NÚMERO DE INGRESO (GENERADO / EDITABLE) *</label>
+              <div class="input-with-btn">
+                <input class="control" id="formOrderNumber" type="number" min="1000" step="1" required placeholder="Ej. 1000">
+                <button type="button" class="scan-trigger-btn" id="regenOrderBtn" title="Generar nuevo número de ingreso">↻ Nuevo</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="formDate">FECHA INGRESO *</label>
+              <div class="input-with-btn">
+                <input class="control" id="formDate" type="date" required>
+                <input class="control" id="formTime" type="time" style="max-width:110px">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="formClient">CLIENTE *</label>
+              <input class="control" id="formClient" type="text" list="dlClientes" maxlength="120" placeholder="Nombre del cliente" required>
+              ${chipsHtml("formClient", "client")}
+            </div>
+            <div class="field">
+              <label for="formRut">RUT / CÉDULA / RUC</label>
+              <input class="control" id="formRut" type="text" maxlength="30" placeholder="Ej. 1803908548001">
+              ${chipsHtml("formRut", "rut")}
+            </div>
+
+            <div class="field">
+              <label for="formAddress">DIRECCIÓN CLIENTE</label>
+              <input class="control" id="formAddress" type="text" list="dlDirecciones" maxlength="160" placeholder="Dirección del cliente">
+              ${chipsHtml("formAddress", "address")}
+            </div>
+            <div class="field">
+              <label for="formPhone">CELULAR / WHATSAPP</label>
+              <input class="control" id="formPhone" type="tel" maxlength="30" placeholder="Ej. 0992835549">
+            </div>
+
+            <div class="field">
+              <label for="formBrand">MARCA DEL EQUIPO *</label>
+              <input class="control" id="formBrand" type="text" list="dlMarcas" maxlength="80" placeholder="Ej. HP, Dell, Lenovo, Epson" required>
+              ${chipsHtml("formBrand", "brand")}
+            </div>
+            <div class="field">
+              <label for="formModel">MODELO / EQUIPO *</label>
+              <input class="control" id="formModel" type="text" list="dlModelos" maxlength="120" placeholder="Ej. WorkForce WF-2830" required>
+              ${chipsHtml("formModel", "model")}
+            </div>
+
+            <div class="field wide">
+              <label for="formSerial">SERIAL / CÓDIGO DE BARRAS (ESCÁNER O MANUAL)</label>
+              <div class="input-with-btn">
+                <input class="control" id="formSerial" type="text" maxlength="100" placeholder="Escribe el número de serie o escanea el código de barras">
+                <button type="button" class="scan-trigger-btn" id="openScannerBtn">📷 Escanear código</button>
+              </div>
+              <div class="scanner-box hidden" id="scannerBox">
+                <video class="scanner-video" id="scannerVideo" playsinline muted></video>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px">
+                  <span class="scanner-status" id="scannerStatus">Iniciando cámara...</span>
+                  <button type="button" class="btn btn-secondary btn-small" id="stopScannerBtn">Detener cámara</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="formReceivedBy">RECIBIDO POR</label>
+              <input class="control" id="formReceivedBy" type="text" list="dlRecibidoPor" maxlength="80" placeholder="Nombre de quien recibe">
+              ${chipsHtml("formReceivedBy", "receivedBy")}
+            </div>
+            <div class="field">
+              <label for="formStatus">ESTADO DEL SERVICIO *</label>
+              <select class="control" id="formStatus" required>
+                <option value="Pendiente">Pendiente</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Completado">Completado</option>
+              </select>
+            </div>
+
+            <div class="field wide">
+              <label for="formService">SERVICIO / DIAGNÓSTICO *</label>
+              <textarea class="control" id="formService" list="dlServicios" maxlength="1000" placeholder="Servicio solicitado o diagnóstico del equipo..." required></textarea>
+              ${chipsHtml("formService", "service")}
+            </div>
+
+            <div class="field">
+              <label for="formCost">TOTAL ($)</label>
+              <input class="control" id="formCost" type="number" min="0" step="0.01" placeholder="0.00">
+            </div>
+            <div class="field">
+              <label for="formAbono">ABONO ($)</label>
+              <input class="control" id="formAbono" type="number" min="0" step="0.01" placeholder="0.00">
+            </div>
+            <div class="field">
+              <label for="formResta">RESTA ($)</label>
+              <input class="control" id="formResta" type="number" min="0" step="0.01" placeholder="0.00">
+            </div>
+            <div class="field">
+              <label for="formObservations">OBSERVACIONES</label>
+              <input class="control" id="formObservations" type="text" maxlength="300" placeholder="Notas adicionales del ingreso">
+              ${chipsHtml("formObservations", "observations")}
+            </div>
+          </div>`;
+
+        elements.formFooter.innerHTML = `
+          <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+          <button type="submit" class="btn btn-whatsapp" data-submit-wa="true">Guardar y enviar WhatsApp</button>
+          <button type="submit" class="btn btn-primary" id="saveRecordBtn">Guardar registro</button>`;
+
+        $("cancelBtn").addEventListener("click", closeModal);
+        $("regenOrderBtn").addEventListener("click", () => {
+          $("formOrderNumber").value = generateOrderNumber();
+          $("formOrderNumber").focus();
+        });
+        $("openScannerBtn").addEventListener("click", startBarcodeScanner);
+        $("stopScannerBtn").addEventListener("click", () => stopBarcodeScanner(true));
+
+        const calcResta = () => {
+          const tot = parseFloat($("formCost").value) || 0;
+          const ab = parseFloat($("formAbono").value) || 0;
+          $("formResta").value = Math.max(0, tot - ab).toFixed(2);
+        };
+        $("formCost").addEventListener("input", calcResta);
+        $("formAbono").addEventListener("input", calcResta);
+
+        elements.formBody.querySelectorAll("[data-chip-target]").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const target = $(chip.dataset.chipTarget);
+            if (!target) return;
+            target.value = chip.dataset.chipVal;
+            target.dispatchEvent(new Event("input", { bubbles: true }));
+            target.focus();
+          });
+        });
+      }
+
+      function openModal() {
+        elements.modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        stopBarcodeScanner(true);
+        elements.modal.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      function openNewRecord() {
+        renderFormFields();
+        elements.form.reset();
+        const now = new Date();
+        $("recordId").value = "";
+        $("formOrderNumber").value = generateOrderNumber();
+        $("formDate").value = now.toLocaleDateString("en-CA");
+        $("formTime").value = now.toTimeString().slice(0, 5);
+        $("formReceivedBy").value = "Jonathan";
+        $("formStatus").value = "Pendiente";
+        $("formResta").value = "0.00";
+        elements.modalTitle.textContent = "Nuevo registro";
+        elements.modalSubtitle.textContent = "Número de ingreso generado automáticamente; puedes escribir o editarlo.";
+        $("saveRecordBtn").textContent = "Guardar registro";
+        openModal();
+        $("formOrderNumber").focus();
+      }
+
+      function findRecord(id) {
+        return records.find((r) => r.id === id);
+      }
+
+      function openEditRecord(r) {
+        renderFormFields();
+        elements.modalTitle.textContent = "Editar registro";
+        elements.modalSubtitle.textContent = `Actualiza la orden ${r.orderNumber || r.id}.`;
+        $("recordId").value = r.id;
+        $("formOrderNumber").value = r.orderNumber || r.id;
+        $("formDate").value = r.date;
+        $("formTime").value = r.time || "08:30";
+        $("formClient").value = r.client;
+        $("formRut").value = r.rut || "";
+        $("formAddress").value = r.address || "";
+        $("formPhone").value = r.phone || "";
+        $("formBrand").value = r.brand || "";
+        $("formModel").value = r.model || r.equipment || "";
+        $("formSerial").value = r.serial || "";
+        $("formReceivedBy").value = r.receivedBy || "";
+        $("formService").value = r.service || r.diagnosis || "";
+        $("formStatus").value = r.status;
+        $("formCost").value = r.cost;
+        $("formAbono").value = r.abono || "";
+        $("formResta").value = r.resta || formatMoneyPlain(Math.max(0, (Number(r.cost) || 0) - (Number(r.abono) || 0)));
+        $("formObservations").value = r.observations || "";
+        $("saveRecordBtn").textContent = "Guardar cambios";
+        openModal();
+      }
+
+      function openViewRecord(r) {
+        stopBarcodeScanner(true);
+        elements.modalTitle.textContent = "Detalle del registro";
+        elements.modalSubtitle.textContent = `Orden de servicio ${r.orderNumber || r.id}`;
+        elements.formBody.innerHTML = `
+          <div class="view-details">
+            <div class="detail"><span class="detail-label">Orden de Servicio Nro.</span><span class="detail-value">${escapeHtml(r.orderNumber || r.id)}</span></div>
+            <div class="detail"><span class="detail-label">Fecha Ingreso</span><span class="detail-value">${escapeHtml(formatDate(r.date))} ${escapeHtml(r.time || "")}</span></div>
+            <div class="detail"><span class="detail-label">Cliente</span><span class="detail-value">${escapeHtml(r.client)}</span></div>
+            <div class="detail"><span class="detail-label">RUT / Celular</span><span class="detail-value">${escapeHtml(r.rut || "—")} · ${escapeHtml(r.phone || "—")}</span></div>
+            <div class="detail"><span class="detail-label">Marca / Modelo</span><span class="detail-value">${escapeHtml(r.brand || "—")} / ${escapeHtml(r.model || r.equipment || "—")}</span></div>
+            <div class="detail"><span class="detail-label">Serial</span><span class="detail-value">${escapeHtml(r.serial || "—")}</span></div>
+            <div class="detail"><span class="detail-label">Recibido por</span><span class="detail-value">${escapeHtml(r.receivedBy || "—")}</span></div>
+            <div class="detail"><span class="detail-label">Estado del servicio</span><span class="detail-value">${escapeHtml(r.status)}</span></div>
+            <div class="detail wide"><span class="detail-label">Servicio / Diagnóstico</span><span class="detail-value">${escapeHtml(r.service || r.diagnosis || "—")}</span></div>
+            <div class="detail wide"><span class="detail-label">Total / Abono / Resta</span><span class="detail-value">Total: ${formatMoneyPlain(r.cost)} · Abono: ${formatMoneyPlain(r.abono)} · Resta: ${formatMoneyPlain(r.resta)}</span></div>
+            <div class="detail wide"><span class="detail-label">Observaciones</span><span class="detail-value">${escapeHtml(r.observations || "—")}</span></div>
+          </div>`;
+        elements.formFooter.innerHTML = `
+          <button type="button" class="btn btn-secondary" id="viewCloseBtn">Cerrar</button>
+          <button type="button" class="btn btn-whatsapp" id="viewWaBtn">${WA_SVG} Enviar WhatsApp</button>
+          <button type="button" class="btn btn-primary" id="viewEditBtn">✎ Editar</button>`;
+        $("viewCloseBtn").addEventListener("click", closeModal);
+        $("viewWaBtn").addEventListener("click", () => { closeModal(); openWhatsAppModal(r); });
+        $("viewEditBtn").addEventListener("click", () => openEditRecord(r));
+        openModal();
+      }
+
+      function showToast(msg) {
+        elements.toast.textContent = msg;
+        elements.toast.classList.remove("hidden");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => elements.toast.classList.add("hidden"), 2700);
+      }
+
+      function handleRecordAction(e) {
+        const btn = e.target.closest("[data-action]");
+        if (!btn) return;
+        const rec = findRecord(btn.dataset.id);
+        if (!rec) return;
+        if (btn.dataset.action === "whatsapp") openWhatsAppModal(rec);
+        if (btn.dataset.action === "wa-ready") sendSemaphoreWhatsApp(rec, "ready");
+        if (btn.dataset.action === "wa-wait-time") sendSemaphoreWhatsApp(rec, "wait-time");
+        if (btn.dataset.action === "wa-wait-long") sendSemaphoreWhatsApp(rec, "wait-long");
+        if (btn.dataset.action === "view") openViewRecord(rec);
+        if (btn.dataset.action === "edit") openEditRecord(rec);
+        if (btn.dataset.action === "delete") {
+          if (!confirm(`¿Eliminar el registro ${rec.orderNumber || rec.id} de ${rec.client}?`)) return;
+          records = records.filter((x) => x.id !== rec.id);
+          saveRecords();
+          render();
+          showToast("Registro eliminado.");
+        }
+      }
+
+      function exportCsv() {
+        const filtered = getFilteredRecords();
+        if (!filtered.length) { showToast("No hay registros para exportar."); return; }
+        const headers = ["NRO_INGRESO", "FECHA", "HORA", "CLIENTE", "RUT", "DIRECCION", "CELULAR", "RECIBIDO_POR", "MARCA", "MODELO", "SERIAL", "SERVICIO", "ESTADO", "TOTAL", "ABONO", "RESTA", "OBSERVACIONES"];
+        const rows = filtered.map((r) => [
+          r.orderNumber || r.id, r.date, r.time || "", r.client, r.rut || "", r.address || "", r.phone || "",
+          r.receivedBy || "", r.brand || "", r.model || r.equipment || "", r.serial || "", r.service || r.diagnosis || "",
+          r.status, formatMoneyPlain(r.cost), formatMoneyPlain(r.abono), formatMoneyPlain(r.resta), r.observations || ""
+        ]);
+        const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+        const csv = "\uFEFF" + [headers, ...rows].map((row) => row.map(esc).join(",")).join("\r\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `afdsistemas-ingresos-${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast(`${filtered.length} registro(s) exportado(s) a CSV.`);
+      }
+
+      elements.form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!elements.form.reportValidity()) return;
+
+        const sendWa = Boolean(e.submitter && e.submitter.dataset.submitWa === "true");
+        const existingId = $("recordId").value;
+        const orderNumber = $("formOrderNumber").value.trim() || generateOrderNumber();
+        const brand = $("formBrand").value.trim();
+        const model = $("formModel").value.trim();
+        const service = $("formService").value.trim();
+        const costVal = $("formCost").value;
+        const abonoVal = $("formAbono").value;
+        const restaVal = $("formResta").value !== ""
+          ? $("formResta").value
+          : String(Math.max(0, (Number(costVal) || 0) - (Number(abonoVal) || 0)).toFixed(2));
+
+        const record = {
+          id: existingId || orderNumber,
+          orderNumber,
+          date: $("formDate").value,
+          time: $("formTime").value || "00:00",
+          client: $("formClient").value.trim(),
+          rut: $("formRut").value.trim(),
+          address: $("formAddress").value.trim(),
+          phone: $("formPhone").value.trim(),
+          receivedBy: $("formReceivedBy").value.trim(),
+          brand,
+          model,
+          serial: $("formSerial").value.trim(),
+          equipment: [brand, model].filter(Boolean).join(" / "),
+          service,
+          diagnosis: service,
+          status: $("formStatus").value,
+          cost: costVal,
+          abono: abonoVal,
+          resta: restaVal,
+          observations: $("formObservations").value.trim(),
+          updatedAt: Date.now()
+        };
+
+        if (existingId) {
+          const idx = records.findIndex((x) => x.id === existingId);
+          if (idx !== -1) records[idx] = record;
+        } else {
+          records.push(record);
+        }
+
+        if (saveRecords()) {
+          render();
+          closeModal();
+          showToast(existingId ? "Registro actualizado." : "Registro guardado.");
+          if (sendWa) openWhatsAppModal(record);
+        }
+      });
+
+      [elements.search, elements.status, elements.equipment, elements.dateFrom, elements.dateTo]
+        .forEach((el) => el.addEventListener("input", render));
+      elements.status.addEventListener("change", render);
+
+      $("clearFiltersBtn").addEventListener("click", () => {
+        elements.search.value = "";
+        elements.status.value = "";
+        elements.equipment.value = "";
+        elements.dateFrom.value = "";
+        elements.dateTo.value = "";
+        render();
+      });
+      $("newBtn").addEventListener("click", openNewRecord);
+      $("exportBtn").addEventListener("click", exportCsv);
+      elements.tableBody.addEventListener("click", handleRecordAction);
+      elements.cardsView.addEventListener("click", handleRecordAction);
+      $("closeModalBtn").addEventListener("click", closeModal);
+      elements.modal.addEventListener("click", (e) => { if (e.target === elements.modal) closeModal(); });
+      $("tableViewBtn").addEventListener("click", () => {
+        viewMode = "table";
+        $("tableViewBtn").classList.add("active");
+        $("cardsViewBtn").classList.remove("active");
+        render();
+      });
+      $("cardsViewBtn").addEventListener("click", () => {
+        viewMode = "cards";
+        $("cardsViewBtn").classList.add("active");
+        $("tableViewBtn").classList.remove("active");
+        render();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (!elements.waModal.classList.contains("hidden")) closeWhatsAppModal();
+          else if (!elements.modal.classList.contains("hidden")) closeModal();
+          else if (!elements.settingsPopover.classList.contains("hidden")) {
+            elements.settingsPopover.classList.add("hidden");
+            elements.settingsBtn.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
+
+      const cloudModal = $("cloudModalBackdrop");
+      function openCloudModal() {
+        const cfg = loadCloudConfig();
+        $("cloudEndpointInput").value = cfg.endpoint;
+        $("cloudApiKeyInput").value = cfg.apiKey;
+        cloudModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+      function closeCloudModal() {
+        cloudModal.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+      $("cloudSyncBtn").addEventListener("click", openCloudModal);
+      $("closeCloudModalBtn").addEventListener("click", closeCloudModal);
+      cloudModal.addEventListener("click", (e) => { if (e.target === cloudModal) closeCloudModal(); });
+      $("saveCloudBtn").addEventListener("click", async () => {
+        const endpoint = $("cloudEndpointInput").value.trim();
+        const apiKey = $("cloudApiKeyInput").value.trim();
+        saveCloudConfig({ endpoint, apiKey, autoSync: true });
+        closeCloudModal();
+        if (endpoint) {
+          await pushToCloud(false);
+        } else {
+          setCloudUiState("off");
+          showToast("Guardado en modo local.");
+        }
+      });
+      $("pullCloudBtn").addEventListener("click", async () => {
+        const endpoint = $("cloudEndpointInput").value.trim();
+        const apiKey = $("cloudApiKeyInput").value.trim();
+        saveCloudConfig({ endpoint, apiKey, autoSync: true });
+        closeCloudModal();
+        await pullFromCloud(false);
+      });
+      $("clearCloudBtn").addEventListener("click", () => {
+        saveCloudConfig({ endpoint: "", apiKey: "", autoSync: true });
+        $("cloudEndpointInput").value = "";
+        $("cloudApiKeyInput").value = "";
+        setCloudUiState("off");
+        elements.saveStatus.textContent = "Datos guardados localmente";
+        closeCloudModal();
+        showToast("Nube desconectada. Usando almacenamiento local.");
+      });
+
+      // SINCRONIZACIÓN 100% AUTOMÁTICA EN TODOS LOS DISPOSITIVOS:
+      // 1) Al volver a enfocar la pestaña / app
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden && loadCloudConfig().endpoint) {
+          pullFromCloud(true);
+        }
+      });
+      // 2) Al recuperar conexión a internet
+      window.addEventListener("online", () => {
+        if (loadCloudConfig().endpoint) {
+          if (hasPendingLocalPush) pushToCloud(true);
+          else pullFromCloud(true);
+        }
+      });
+      // 3) Auto-actualización continua cada 15 segundos mientras la pestaña esté visible
+      setInterval(() => {
+        if (!document.hidden && navigator.onLine && loadCloudConfig().endpoint) {
+          pullFromCloud(true);
+        }
+      }, 15000);
+
+      render();
+      if (loadCloudConfig().endpoint) {
+        setCloudUiState("syncing");
+        pullFromCloud(true);
+      } else {
+        setCloudUiState("off");
+      }
+    })();
+  </script>
+</body>
+</html>
