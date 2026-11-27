@@ -52,6 +52,14 @@
       --badge-proc-fg: #0F6A96;
       --badge-comp-bg: #ECF8D2;
       --badge-comp-fg: #4F6D06;
+      --badge-lista-bg: #D1FAE5;
+      --badge-lista-fg: #065F46;
+      --badge-baja-bg: #FEE2E2;
+      --badge-baja-fg: #991B1B;
+      --badge-norec-bg: #F1F5F9;
+      --badge-norec-fg: #334155;
+      --badge-rev-bg: #EDE9FE;
+      --badge-rev-fg: #5B21B6;
     }
 
     /* TEMA OSCURO FUTURISTA: Degradado Azul profundo arriba -> Verde tecnológico abajo */
@@ -81,6 +89,14 @@
       --badge-proc-fg: #7DD3FC;
       --badge-comp-bg: rgba(149, 193, 31, 0.20);
       --badge-comp-fg: #BEF264;
+      --badge-lista-bg: rgba(16, 185, 129, 0.20);
+      --badge-lista-fg: #6EE7B7;
+      --badge-baja-bg: rgba(239, 68, 68, 0.20);
+      --badge-baja-fg: #FCA5A5;
+      --badge-norec-bg: rgba(148, 163, 184, 0.20);
+      --badge-norec-fg: #CBD5E1;
+      --badge-rev-bg: rgba(139, 92, 246, 0.22);
+      --badge-rev-fg: #C4B5FD;
     }
 
     * { box-sizing: border-box; }
@@ -458,6 +474,10 @@
     .stat-icon.pending { background: var(--badge-pend-bg); color: var(--badge-pend-fg); }
     .stat-icon.progress { background: var(--badge-proc-bg); color: var(--badge-proc-fg); }
     .stat-icon.done { background: var(--badge-comp-bg); color: var(--badge-comp-fg); }
+    .stat-icon.lista { background: var(--badge-lista-bg); color: var(--badge-lista-fg); }
+    .stat-icon.baja { background: var(--badge-baja-bg); color: var(--badge-baja-fg); }
+    .stat-icon.norec { background: var(--badge-norec-bg); color: var(--badge-norec-fg); }
+    .stat-icon.rev { background: var(--badge-rev-bg); color: var(--badge-rev-fg); }
 
     .stat-value {
       display: block;
@@ -695,6 +715,10 @@
     .status-pendiente { background: var(--badge-pend-bg); color: var(--badge-pend-fg); }
     .status-proceso { background: var(--badge-proc-bg); color: var(--badge-proc-fg); }
     .status-completado { background: var(--badge-comp-bg); color: var(--badge-comp-fg); }
+    .status-lista { background: var(--badge-lista-bg); color: var(--badge-lista-fg); }
+    .status-baja { background: var(--badge-baja-bg); color: var(--badge-baja-fg); }
+    .status-norec { background: var(--badge-norec-bg); color: var(--badge-norec-fg); }
+    .status-rev { background: var(--badge-rev-bg); color: var(--badge-rev-fg); }
 
     .cost { font-family: var(--font-mono); font-weight: 800; color: var(--ink-strong); white-space: nowrap; }
     .row-actions { display: flex; gap: 5px; }
@@ -1923,7 +1947,23 @@
         </article>
         <article class="stat-card">
           <div class="stat-icon done" aria-hidden="true">✓</div>
-          <div><span class="stat-value" id="doneCount">0</span><span class="stat-title">Completados</span><span class="stat-caption">Listos o entregados</span></div>
+          <div><span class="stat-value" id="doneCount">0</span><span class="stat-title">Completados</span><span class="stat-caption">Finalizados / entregados</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon lista" aria-hidden="true">★</div>
+          <div><span class="stat-value" id="listaCount">0</span><span class="stat-title">Lista</span><span class="stat-caption">Equipos listos para retiro</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon rev" aria-hidden="true">⌕</div>
+          <div><span class="stat-value" id="revCount">0</span><span class="stat-title">Solo revisión</span><span class="stat-caption">Únicamente diagnóstico</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon norec" aria-hidden="true">↺</div>
+          <div><span class="stat-value" id="norecCount">0</span><span class="stat-title">No recuperada</span><span class="stat-caption">Sin reparación posible</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon baja" aria-hidden="true">✕</div>
+          <div><span class="stat-value" id="bajaCount">0</span><span class="stat-title">Dada de baja</span><span class="stat-caption">Descartados / reciclaje</span></div>
         </article>
       </div>
     </section>
@@ -1956,6 +1996,10 @@
             <option value="Pendiente">Pendiente</option>
             <option value="En proceso">En proceso</option>
             <option value="Completado">Completado</option>
+            <option value="Lista">Lista</option>
+            <option value="Solo revisión">Solo revisión</option>
+            <option value="No recuperada">No recuperada</option>
+            <option value="Dada de baja">Dada de baja</option>
           </select>
         </div>
         <div class="field">
@@ -2229,7 +2273,19 @@
       // URL ACTUALIZADA DE GOOGLE APPS SCRIPT (afdsistemas.base.datos@gmail.com)
       const DEFAULT_CLOUD_ENDPOINT = "https://script.google.com/macros/s/AKfycbxp50D4lsuLkOzasQhe3exgB5_NSIbNWf4I94So2LLlXecA0-t0oDG0zha4XyyrlvI/exec";
 
-      const STATUSES = ["Pendiente", "En proceso", "Completado"];
+      const STATUSES = ["Pendiente", "En proceso", "Completado", "Lista", "Dada de baja", "No recuperada", "Solo revisión"];
+
+      function normalizeStatusValue(raw) {
+        const val = String(raw || "").trim();
+        if (!val) return "Pendiente";
+        const low = val.toLocaleLowerCase("es");
+        if (low === "lista") return "Lista";
+        if (low === "dada de baja" || low === "dada de vaja") return "Dada de baja";
+        if (low === "no recuperada") return "No recuperada";
+        if (low === "solo revisión" || low === "solo revision" || low === "solo revición" || low === "solo revicion") return "Solo revisión";
+        if (STATUSES.includes(val)) return val;
+        return "Pendiente";
+      }
 
       function loadCloudConfig() {
         try {
@@ -2321,7 +2377,7 @@
             equipment: String(r.equipment || [r.brand, r.model].filter(Boolean).join(" / ")),
             service: String(r.service || r.diagnosis || ""),
             diagnosis: String(r.diagnosis || r.service || ""),
-            status: STATUSES.includes(r.status) ? r.status : "Pendiente",
+            status: normalizeStatusValue(r.status),
             cost: r.cost === "" || r.cost == null ? "" : String(r.cost),
             abono: r.abono === "" || r.abono == null ? "" : String(r.abono),
             resta: r.resta === "" || r.resta == null ? String(Math.max(0, totalNum - abonoNum).toFixed(2)) : String(r.resta),
@@ -2639,7 +2695,7 @@
 
       const $ = (id) => document.getElementById(id);
       const elements = {
-        total: $("totalCount"), pending: $("pendingCount"), progress: $("progressCount"), done: $("doneCount"),
+        total: $("totalCount"), pending: $("pendingCount"), progress: $("progressCount"), done: $("doneCount"), lista: $("listaCount"), baja: $("bajaCount"), norec: $("norecCount"), rev: $("revCount"),
         search: $("searchInput"), status: $("statusFilter"), equipment: $("equipmentFilter"),
         dateFrom: $("dateFrom"), dateTo: $("dateTo"), tableBody: $("recordsTableBody"),
         tableView: $("tableView"), cardsView: $("cardsView"), empty: $("emptyState"),
@@ -2727,7 +2783,7 @@
               equipment: String(r.equipment || [r.brand, r.model].filter(Boolean).join(" / ")),
               service: String(r.service || r.diagnosis || ""),
               diagnosis: String(r.diagnosis || r.service || ""),
-              status: STATUSES.includes(r.status) ? r.status : "Pendiente",
+              status: normalizeStatusValue(r.status),
               cost: r.cost === "" || r.cost == null ? "" : String(r.cost),
               abono: r.abono === "" || r.abono == null ? "" : String(r.abono),
               resta: r.resta === "" || r.resta == null ? String(Math.max(0, totalNum - abonoNum).toFixed(2)) : String(r.resta),
@@ -2821,6 +2877,10 @@
       function statusClass(s) {
         if (s === "En proceso") return "status-proceso";
         if (s === "Completado") return "status-completado";
+        if (s === "Lista") return "status-lista";
+        if (s === "Dada de baja") return "status-baja";
+        if (s === "No recuperada") return "status-norec";
+        if (s === "Solo revisión") return "status-rev";
         return "status-pendiente";
       }
 
@@ -3092,7 +3152,16 @@
             && (!st || r.status === st)
             && (!from || r.date >= from)
             && (!to || r.date <= to);
-        }).sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.orderNumber || b.id).localeCompare(a.orderNumber || a.id));
+        }).sort((a, b) => {
+          const orderA = String(a.orderNumber || a.id || "").trim();
+          const orderB = String(b.orderNumber || b.id || "").trim();
+          const numA = parseInt(orderA.replace(/\D/g, ""), 10);
+          const numB = parseInt(orderB.replace(/\D/g, ""), 10);
+          if (Number.isFinite(numA) && Number.isFinite(numB) && numA !== numB) {
+            return numB - numA;
+          }
+          return orderB.localeCompare(orderA, undefined, { numeric: true, sensitivity: "base" });
+        });
       }
 
       function render() {
@@ -3101,6 +3170,10 @@
         elements.pending.textContent = records.filter((r) => r.status === "Pendiente").length;
         elements.progress.textContent = records.filter((r) => r.status === "En proceso").length;
         elements.done.textContent = records.filter((r) => r.status === "Completado").length;
+        if (elements.lista) elements.lista.textContent = records.filter((r) => r.status === "Lista").length;
+        if (elements.baja) elements.baja.textContent = records.filter((r) => r.status === "Dada de baja").length;
+        if (elements.norec) elements.norec.textContent = records.filter((r) => r.status === "No recuperada").length;
+        if (elements.rev) elements.rev.textContent = records.filter((r) => r.status === "Solo revisión").length;
 
         const filtered = getFilteredRecords();
         elements.resultCount.innerHTML = `Mostrando <strong>${filtered.length}</strong> de <strong>${records.length}</strong> registros`;
@@ -3668,6 +3741,10 @@
                 <option value="Pendiente">Pendiente</option>
                 <option value="En proceso">En proceso</option>
                 <option value="Completado">Completado</option>
+                <option value="Lista">Lista</option>
+                <option value="Solo revisión">Solo revisión</option>
+                <option value="No recuperada">No recuperada</option>
+                <option value="Dada de baja">Dada de baja</option>
               </select>
             </div>
 
